@@ -15,73 +15,15 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f8f9fa;
+            background-color: #ffffff;
             color: #212529;
             line-height: 1.6;
-        }
-
-        /* Documentation Layout Structure */
-        .wrapper {
-            display: table;
-            width: 100%;
-            min-height: 100vh;
-        }
-
-        .sidebar-cell {
-            display: table-cell;
-            width: 260px;
-            background-color: #ffffff;
-            border-right: 1px solid #e9ecef;
-            vertical-align: top;
-        }
-
-        .main-cell {
-            display: table-cell;
-            vertical-align: top;
-            padding: 40px 50px;
+            padding: 40px 20px;
         }
 
         .container {
-            max-width: 850px;
+            max-width: 800px;
             margin: 0 auto;
-        }
-
-        /* Navigation Sidebar */
-        .sidebar-fixed {
-            position: fixed;
-            width: 260px;
-            top: 0;
-            bottom: 0;
-            padding: 30px 20px;
-            overflow-y: auto;
-        }
-
-        .sidebar-fixed h2 {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #6c757d;
-            margin-bottom: 20px;
-        }
-
-        .sidebar-fixed ul {
-            list-style: none;
-        }
-
-        .sidebar-fixed ul li {
-            margin-bottom: 12px;
-        }
-
-        .sidebar-fixed ul li a {
-            color: #495057;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .sidebar-fixed ul li a:hover {
-            color: #ff9900;
         }
 
         /* Typography & Document Styles */
@@ -116,14 +58,35 @@
             font-size: 16px;
         }
 
-        ol {
+        ul, ol {
             margin-left: 20px;
             margin-bottom: 20px;
             color: #4a5568;
         }
 
-        ol li {
+        li {
             margin-bottom: 8px;
+        }
+
+        /* Table layout for command matrix display system */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #333;
         }
 
         /* Monospace Code Styling Blocks */
@@ -136,39 +99,22 @@
             font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
             font-size: 14px;
             margin-bottom: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
         code {
             font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-            background-color: #eef2f7;
+            background-color: #f1f3f5;
             color: #d63384;
             padding: 2px 6px;
             border-radius: 4px;
             font-size: 14px;
         }
 
-        /* Callout Infobox Panels */
-        .callout {
-            background-color: #fff3cd;
-            border-left: 4px solid #ff9900;
-            color: #664d03;
-            padding: 16px 20px;
-            border-radius: 4px;
-            margin-bottom: 25px;
-            font-size: 15px;
-            text-align: left;
-        }
-
-        .callout.info {
-            background-color: #e2f0fd;
-            border-left: 4px solid #007bff;
-            color: #1d4ed8;
-        }
-
-        .callout-title {
-            font-weight: 700;
-            margin-bottom: 6px;
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
         }
 
         /* BlockCode Render Window Wrapper */
@@ -181,84 +127,76 @@
             margin-bottom: 30px;
             overflow-x: auto;
             box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-            text-align: left;
         }
 
         .scratchblocks {
             display: block;
             margin: 0;
         }
-
-        /* Responsive Breakpoints */
-        @media (max-width: 768px) {
-            .wrapper {
-                display: block;
-            }
-            .sidebar-cell {
-                display: block;
-                width: 100%;
-                border-right: none;
-                border-bottom: 1px solid #e9ecef;
-            }
-            .sidebar-fixed {
-                position: relative;
-                width: 100%;
-                padding: 20px;
-            }
-            .main-cell {
-                display: block;
-                padding: 30px 20px;
-            }
-        }
     </style>
 </head>
 <body>
 
-    <div class="wrapper">
-        <div class="sidebar-cell">
-            <div class="sidebar-fixed">
-                <h2>BlockCoin Docs</h2>
-                <ul>
-                    <li><a href="#overview">Overview</a></li>
-                    <li><a href="#installation">Sprite Setup</a></li>
-                    <li><a href="#blockcode-manager">BlockCode Layouts</a></li>
-                    <li><a href="#environment-variables">Environment Setup</a></li>
-                    <li><a href="#central-queue">Central Queue Engine</a></li>
-                </ul>
-            </div>
-        </div>
+    <div class="container">
+        
+        <section id="overview">
+            <h1>BlockCoin Documentation</h1>
+            <p>Welcome to the official documentation for the BlockCoin currency system for Scratch. This system uses Scratchattach to connect shops and games to a centralized server and then uses a captcha to verify transactions safely and easily.</p>
+        </section>
 
-        <div class="main-cell">
-            <div class="container">
-                
-                <section id="overview">
-                    <h1>BlockCoin Documentation</h1>
-                    <p>Welcome to the official documentation for the BlockCoin currency system for Scratch. This system uses Scratchattach to connect shops and games to a centralized server and then uses a captcha to verify captions.</p>
-                </section>
+        <section id="installation">
+            <h2>Project Setup & Integration</h2>
+            <p>To implement BlockCoin into your own custom Scratch games, follow these implementation steps:</p>
+            <ol>
+                <li>Open the official master project editor at <a href="https://scratch.mit.edu/projects/1331635541/editor/" target="_blank">https://scratch.mit.edu/projects/1331635541/editor/</a>, open your backpack menu, and drag the sprite named <strong>"Cloud Requests"</strong> inside. Paste this sprite directly into your target game project.</li>
+                <li>This network relies on the cloud request infrastructure created by <strong>@timmccool</strong>. You <strong>MUST</strong> provide explicit credit to <code>@timmccool</code> within your project description fields before sharing your game online.</li>
+            </ol>
+        </section>
 
-                <section id="installation">
-                    <h2>Project Setup & Integration</h2>
-                    <p>To implement BlockCoin into your own custom Scratch games, follow these implementation steps:</p>
-                    
-                    <div class="callout info">
-                        <div class="callout-title">1. Backpack the Request Engine</div>
-                        <div>Open the official master project editor at <a href="https://scratch.mit.edu/projects/1331635541/editor/" target="_blank">https://scratch.mit.edu/projects/1331635541/editor/</a>, open your backpack menu, and drag the sprite named <strong>"Cloud Requests"</strong> inside. Paste this sprite directly into your target game project.</div>
-                    </div>
+        <section id="scratch-commands">
+            <h2>Scratch Command Matrix Reference</h2>
+            <p>The table below summarizes the core cross-network client calls available inside the cloud requests module:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Command Method Name</th>
+                        <th>Function Input Argument</th>
+                        <th>Expected Server Response Behavior</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>get_captcha</code></td>
+                        <td><code>username</code></td>
+                        <td>Returns a raw parsing rule string merged with a unique validation code token.</td>
+                    </tr>
+                    <tr>
+                        <td><code>get_owner</code></td>
+                        <td>None</td>
+                        <td>Returns the active profile username string of the project channel owner.</td>
+                    </tr>
+                    <tr>
+                        <td><code>transaction</code></td>
+                        <td><code>Amount</code>, <code>username</code></td>
+                        <td>Deducts funds from the user, updates logs, and returns the modified current balance value.</td>
+                    </tr>
+                    <tr>
+                        <td><code>send_captcha</code></td>
+                        <td><code>username</code>, <code>verification_code</code></td>
+                        <td>Checks project comments; returns <code>VALIDATED</code> or error strings.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-                    <div class="callout">
-                        <div class="callout-title">2. Mandatory Project Credits</div>
-                        <div>This network relies on the cloud request infrastructure created by <strong>@timmccool</strong>. You <strong>MUST</strong> provide explicit credit to <code>@timmccool</code> within your project description fields before sharing your game online.</div>
-                    </div>
-                </section>
-
-                <section id="blockcode-manager">
-                    <h2>BlockCode Manager (Official Layouts)</h2>
-                    <p>Below are the accurate blocks required to execute secure payment transactions within your game interface.</p>
-                    
-                    <h3>Official Payment Request Function (PayCoins)</h3>
-                    <div class="blockcode-container">
-                        <pre class="scratch">
-define PayCoins [Amount]
+        <section id="blockcode-manager">
+            <h2>Official Logic Blocks</h2>
+            <p>Below are the accurate layouts required to handle secure payment requests and transaction verification routines within your game interface:</p>
+            
+            <h3>Official Payment Request Function (PayCoins)</h3>
+            <div class="blockcode-container">
+                <pre class="scratch">
+define PayCoins (Amount)
 Send Request | request name: [get_captcha] argument1: (username) and wait :: custom
 ask [response] and wait
 Send request | request name: [get_owner] and wait :: custom
@@ -266,12 +204,12 @@ ask (join [Do you authorize a transaction of ] (join (Amount) (join [ to ] (join
 if &lt;(answer) = [y]&gt; then
   Send request | request name: [transaction] argument1: (Amount) argument2: (username) and wait :: custom
 end
-                        </pre>
-                    </div>
+                </pre>
+            </div>
 
-                    <h3>Verification Script Parsing Context</h3>
-                    <div class="blockcode-container">
-                        <pre class="scratch">
+            <h3>Verification Script Parsing Context</h3>
+            <div class="blockcode-container">
+                <pre class="scratch">
 when this sprite clicked
 ask [Enter your Scratch username:] and wait
 set [username v] to (answer)
@@ -294,27 +232,23 @@ if &lt;(server_response) contains [|]&gt; then
 else
   say [Server error. Please try again.] for (3) secs
 end
-                        </pre>
-                    </div>
-                </section>
+                </pre>
+            </div>
+        </section>
 
-                <section id="environment-variables">
-                    <h2>Environment Setup</h2>
-                    <p>The backend requires specific secure variables exposed inside the hosting instance environment to link up with your Scratch account cleanly.</p>
-                    <pre><code># Required System Context Keys
+        <section id="environment-variables">
+            <h2>Environment Setup</h2>
+            <p>The backend requires specific secure variables exposed inside the hosting instance environment to link up with your Scratch account cleanly.</p>
+            <pre><code># Required System Context Keys
 export SCRATCH_USER2="YourScratchAccountUsername"
 export SCRATCH_PASS2="YourSecureProfilePassword"</code></pre>
-                </section>
-
-                <section id="central-queue">
-                    <h2>Central Queue Engine</h2>
-                    <p>To safely handle data modifications without letting Scratch drop incoming variables due to high traffic volume, all listening wrapper contexts defer execution tasks to a synchronized, thread-safe queue.</p>
-                    <pre><code># Internal execution delay buffer to secure connection safety
+            
+            <h3>Central Queue Delay Configuration</h3>
+            <p>To safely handle data modifications without letting Scratch drop incoming variables due to high traffic volume, all listening wrapper contexts defer execution tasks to a synchronized, thread-safe queue.</p>
+            <pre><code># Internal execution delay buffer to secure connection safety
 time.sleep(0.15)</code></pre>
-                </section>
+        </section>
 
-            </div>
-        </div>
     </div>
 
     <script>
