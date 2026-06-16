@@ -233,7 +233,7 @@
                 
                 <section id="overview">
                     <h1>BlockCoin Documentation</h1>
-                    <p>Welcome to the official documentation for the BlockCoin Ledger ecosystem. This system orchestrates and records balances across multiple distributed gaming instances on the Scratch network securely using a specialized back-end queue processor.</p>
+                    <p>Welcome to the official documentation for the BlockCoin currency system for Scratch. This system uses Scratchattach to connect shops and games to a centralized server and then uses a captcha to verify captions.</p>
                 </section>
 
                 <section id="installation">
@@ -258,7 +258,7 @@
                     <h3>Official Payment Request Function (PayCoins)</h3>
                     <div class="blockcode-container">
                         <pre class="scratch">
-define PayCoins (Amount)
+define PayCoins [Amount]
 Send Request | request name: [get_captcha] argument1: (username) and wait :: custom
 ask [response] and wait
 Send request | request name: [get_owner] and wait :: custom
