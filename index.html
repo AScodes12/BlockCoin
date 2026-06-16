@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecosystem Network Docs</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+            line-height: 1.6;
+        }
+
+        /* Documentation Layout Structure using table layout for clean columns */
+        .wrapper {
+            display: table;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .sidebar-cell {
+            display: table-cell;
+            width: 260px;
+            background-color: #ffffff;
+            border-right: 1px solid #e9ecef;
+            vertical-align: top;
+        }
+
+        .main-cell {
+            display: table-cell;
+            vertical-align: top;
+            padding: 40px 50px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Navigation Sidebar styles */
+        .sidebar-fixed {
+            position: fixed;
+            width: 260px;
+            top: 0;
+            bottom: 0;
+            padding: 30px 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar-fixed h2 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-fixed ul {
+            list-style: none;
+        }
+
+        .sidebar-fixed ul li {
+            margin-bottom: 12px;
+        }
+
+        .sidebar-fixed ul li a {
+            color: #495057;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .sidebar-fixed ul li a:hover {
+            color: #007bff;
+        }
+
+        /* Typography & Document Styles */
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #111;
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e9ecef;
+            color: #222;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #4a5568;
+            font-size: 16px;
+        }
+
+        ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+            color: #4a5568;
+        }
+
+        ol li {
+            margin-bottom: 8px;
+        }
+
+        /* Monospace Code Styling Blocks */
+        pre {
+            background-color: #1e1e24;
+            color: #f8f9fa;
+            padding: 18px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 14px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            background-color: #eef2f7;
+            color: #d63384;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        /* Callout Infobox Panels */
+        .callout {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            color: #664d03;
+            padding: 16px 20px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        .callout-title {
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .wrapper {
+                display: block;
+            }
+            .sidebar-cell {
+                display: block;
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e9ecef;
+            }
+            .sidebar-fixed {
+                position: relative;
+                width: 100%;
+                padding: 20px;
+            }
+            .main-cell {
+                display: block;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="sidebar-cell">
+            <div class="sidebar-fixed">
+                <h2>Documentation</h2>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#environment-variables">Environment Setup</a></li>
+                    <li><a href="#central-queue">Central Queue Engine</a></li>
+                    <li><a href="#comment-verification">Comment Verification</a></li>
+                    <li><a href="#scratch-integration">Scratch Logic Rules</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-cell">
+            <div class="container">
+                
+                <section id="overview">
+                    <h1>Ecosystem Network Documentation</h1>
+                    <p>Welcome to the multi-project currency network dashboard documentation. This system handles distributed requests asynchronously across multiple active Scratch projects using a dedicated thread pool and centralized serialization to remain completely clear of rate limits.</p>
+                </section>
+
+                <section id="environment-variables">
+                    <h2>Environment Setup</h2>
+                    <p>The backend requires specific secure variables exposed inside the hosting instance environment to link up with your Scratch account cleanly.</p>
+                    <pre><code># Required System Context Keys
+export SCRATCH_USER2="YourScratchAccountUsername"
+export SCRATCH_PASS2="YourSecureProfilePassword"</code></pre>
+                </section>
+
+                <section id="central-queue">
+                    <h2>Central Queue Engine</h2>
+                    <p>To safely handle data modifications without letting Scratch drop incoming variables due to high traffic volume, all listening wrapper contexts defer execution tasks to a synchronized, thread-safe queue. The background worker evaluates inputs sequentially, injecting a constant safe delay interval:</p>
+                    <pre><code># Internal execution delay buffer to secure connection safety
+time.sleep(0.15)</code></pre>
+                </section>
+
+                <section id="comment-verification">
+                    <h2>Comment Verification System</h2>
+                    <p>The authorization layer uses native project-comment confirmation protocols rather than standard math puzzles to prevent automation and script exploits.</p>
+                    
+                    <div class="callout">
+                        <div class="callout-title">Critical System Requirement</div>
+                        <div>The <code>MASTER_PROJECT_ID</code> defined at the top of your server configuration file must point to an active, publicly shared Scratch project with public comments enabled. If the project remains private or unshared, lookups will fail with a <code>ProjectNotFound</code> error.</div>
+                    </div>
+
+                    <ol>
+                        <li>The client issues a <code>get_captcha</code> call to query a verification token.</li>
+                        <li>The server maps a new validation key tied directly to the requester's profile.</li>
+                        <li>The player posts that exact phrase as a text comment on your master project page.</li>
+                        <li>The server scans the layout when <code>send_captcha</code> trips and grants authorization upon matching.</li>
+                    </ol>
+                </section>
+
+                <section id="scratch-integration">
+                    <h2>Scratch Integration</h2>
+                    <p>The returned string string uses a custom split string pipeline formatted with a vertical pipe delimiter (<code>|</code>). Your frontend blocks should split the text systematically like this:</p>
+                    <pre><code># Decoded Server Response Example Output Layout Structure
+RULE:Comment this exact code on project 1331635541 then hit Verify|PUZZLE:abc123xyz</code></pre>
+                    <p>Extract the string segment occurring prior to the pipe character to display instruction guidelines directly to your players, and copy the suffix segment to use as their code identifier text string.</p>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
