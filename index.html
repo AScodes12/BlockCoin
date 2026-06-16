@@ -105,7 +105,7 @@
         h3 {
             font-size: 16px;
             font-weight: 600;
-            margin-top: 20px;
+            margin-top: 25px;
             margin-bottom: 10px;
             color: #333;
         }
@@ -148,13 +148,6 @@
             font-size: 14px;
         }
 
-        pre code {
-            background-color: transparent;
-            color: inherit;
-            padding: 0;
-            border-radius: 0;
-        }
-
         /* Callout Infobox Panels */
         .callout {
             background-color: #fff3cd;
@@ -165,6 +158,12 @@
             margin-bottom: 25px;
             font-size: 15px;
             text-align: left;
+        }
+
+        .callout.info {
+            background-color: #e2f0fd;
+            border-left: 4px solid #007bff;
+            color: #1d4ed8;
         }
 
         .callout-title {
@@ -221,10 +220,10 @@
                 <h2>BlockCoin Docs</h2>
                 <ul>
                     <li><a href="#overview">Overview</a></li>
+                    <li><a href="#installation">Sprite Setup</a></li>
                     <li><a href="#blockcode-manager">BlockCode Layouts</a></li>
                     <li><a href="#environment-variables">Environment Setup</a></li>
                     <li><a href="#central-queue">Central Queue Engine</a></li>
-                    <li><a href="#comment-verification">Comment Verification</a></li>
                 </ul>
             </div>
         </div>
@@ -237,11 +236,40 @@
                     <p>Welcome to the official documentation for the BlockCoin Ledger ecosystem. This system orchestrates and records balances across multiple distributed gaming instances on the Scratch network securely using a specialized back-end queue processor.</p>
                 </section>
 
-                <section id="blockcode-manager">
-                    <h2>BlockCode Manager (Scratch Layouts)</h2>
-                    <p>Below are the accurate layouts required to build the interface inside your Scratch projects. These are rendered live using standard forum syntax text syntax.</p>
+                <section id="installation">
+                    <h2>Project Setup & Integration</h2>
+                    <p>To implement BlockCoin into your own custom Scratch games, follow these implementation steps:</p>
                     
-                    <h3>1. Requesting the Verification Code</h3>
+                    <div class="callout info">
+                        <div class="callout-title">1. Backpack the Request Engine</div>
+                        <div>Open the official master project editor at <a href="https://scratch.mit.edu/projects/1331635541/editor/" target="_blank">https://scratch.mit.edu/projects/1331635541/editor/</a>, open your backpack menu, and drag the sprite named <strong>"Cloud Requests"</strong> inside. Paste this sprite directly into your target game project.</div>
+                    </div>
+
+                    <div class="callout">
+                        <div class="callout-title">2. Mandatory Project Credits</div>
+                        <div>This network relies on the cloud request infrastructure created by <strong>@timmccool</strong>. You <strong>MUST</strong> provide explicit credit to <code>@timmccool</code> within your project description fields before sharing your game online.</div>
+                    </div>
+                </section>
+
+                <section id="blockcode-manager">
+                    <h2>BlockCode Manager (Official Layouts)</h2>
+                    <p>Below are the accurate blocks required to execute secure payment transactions within your game interface.</p>
+                    
+                    <h3>Official Payment Request Function (PayCoins)</h3>
+                    <div class="blockcode-container">
+                        <pre class="scratch">
+define PayCoins (Amount)
+Send Request | request name: [get_captcha] argument1: (username) and wait :: custom
+ask [response] and wait
+Send request | request name: [get_owner] and wait :: custom
+ask (join [Do you authorize a transaction of ] (join (Amount) (join [ to ] (join (response) [ (y/n)])))) and wait
+if &lt;(answer) = [y]&gt; then
+  Send request | request name: [transaction] argument1: (Amount) argument2: (username) and wait :: custom
+end
+                        </pre>
+                    </div>
+
+                    <h3>Verification Script Parsing Context</h3>
                     <div class="blockcode-container">
                         <pre class="scratch">
 when this sprite clicked
@@ -268,28 +296,6 @@ else
 end
                         </pre>
                     </div>
-
-                    <h3>2. Checking Comment Status</h3>
-                    <div class="blockcode-container">
-                        <pre class="scratch">
-when this sprite clicked
-if &lt;(verification_code) = []&gt; then
-  say [Please request a code first!] for (3) secs
-  stop [this script v]
-end
-say [Checking project comments...] for (2) secs
-set [verify_status v] to (brackets [send_captcha] (username) (verification_code) :: extension)
-if &lt;(verify_status) = [VALIDATED]&gt; then
-  say [Success! Proceeding to transaction...] for (3) secs
-else
-  if &lt;(verify_status) = [ERROR_NOT_COMMENTED_YET]&gt; then
-    say [Code not found yet. Make sure you commented on the project!] for (4) secs
-  else
-    say (join [Verification failed: ] (verify_status)) for (3) secs
-  end
-end
-                        </pre>
-                    </div>
                 </section>
 
                 <section id="environment-variables">
@@ -302,19 +308,9 @@ export SCRATCH_PASS2="YourSecureProfilePassword"</code></pre>
 
                 <section id="central-queue">
                     <h2>Central Queue Engine</h2>
-                    <p>To safely handle data modifications without letting Scratch drop incoming variables due to high traffic volume, all listening wrapper contexts defer execution tasks to a synchronized, thread-safe queue. The background worker evaluates inputs sequentially, injecting a constant safe delay interval:</p>
+                    <p>To safely handle data modifications without letting Scratch drop incoming variables due to high traffic volume, all listening wrapper contexts defer execution tasks to a synchronized, thread-safe queue.</p>
                     <pre><code># Internal execution delay buffer to secure connection safety
 time.sleep(0.15)</code></pre>
-                </section>
-
-                <section id="comment-verification">
-                    <h2>Comment Verification System</h2>
-                    <p>The authorization layer uses native project-comment confirmation protocols rather than standard math puzzles to prevent automation and script exploits.</p>
-                    
-                    <div class="callout">
-                        <div class="callout-title">Critical System Requirement</div>
-                        <div>The <code>MASTER_PROJECT_ID</code> defined at the top of your server configuration file must point to an active, publicly shared Scratch project with public comments enabled. If the project remains private or unshared, lookups will fail with a <code>ProjectNotFound</code> error.</div>
-                    </div>
                 </section>
 
             </div>
