@@ -10,50 +10,63 @@
         body {
             background-color: var(--body-bg); color: var(--body-color);
             font-family: var(--body-font); padding: var(--body-pad);
-            line-height: 1.6;
+            line-height: 1.7;
         }
         .container { max-width: var(--max-width); margin: 0 auto; }
-        h1 { font-size: var(--h1-size); color: var(--h1-color); font-weight: 700; margin-bottom: 15px; }
-        h2 { font-size: var(--h2-size); color: var(--h2-color); border-bottom: 1px solid var(--h2-border); font-weight: 600; margin-top: 40px; margin-bottom: 15px; padding-bottom: 8px; }
-        h3 { font-size: 16px; font-weight: 600; margin-top: 25px; margin-bottom: 10px; color: inherit; opacity: 0.9; }
-        p { margin-bottom: 20px; color: var(--table-text); font-size: 16px; }
-        ol { margin-left: 20px; margin-bottom: 20px; color: var(--table-text); }
-        li { margin-bottom: 8px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 25px; font-size: 15px; color: var(--table-text); }
-        th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--table-border); }
+        
+        h1 { font-size: var(--h1-size); color: var(--h1-color); font-weight: 700; margin-bottom: 20px; letter-spacing: -0.5px; }
+        h2 { font-size: var(--h2-size); color: var(--h2-color); border-bottom: 2px solid var(--h2-border); font-weight: 600; margin-top: 45px; margin-bottom: 20px; padding-bottom: 8px; }
+        h3 { font-size: 16px; font-weight: 600; margin-top: 25px; margin-bottom: 12px; color: inherit; opacity: 0.9; }
+        
+        p { margin-bottom: 20px; font-size: 16px; }
+        ol { margin-left: 24px; margin-bottom: 25px; }
+        li { margin-bottom: 10px; font-size: 16px; }
+        
+        a { color: var(--link-color); text-decoration: none; font-weight: 500; }
+        a:hover { text-decoration: underline; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 30px; font-size: 15px; }
+        th, td { text-align: left; padding: 14px; border-bottom: 1px solid var(--table-border); }
         th { background-color: var(--table-bg); font-weight: 600; color: var(--table-head-color); }
+        td { color: var(--table-text); }
+        
         .blockcode-container {
             background-color: var(--code-bg); color: var(--code-color); border-radius: var(--code-radius);
             padding: var(--code-pad); margin-top: 5px; margin-bottom: 30px; overflow-x: auto;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
         }
-        pre { font-family: "SFMono-Regular", Consolas, monospace; font-size: var(--code-size); white-space: pre; line-height: 1.5; }
-        code { font-family: "SFMono-Regular", Consolas, monospace; background-color: var(--inline-bg); color: var(--inline-color); padding: 2px 6px; border-radius: 4px; font-size: 14px; }
+        pre { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: var(--code-size); white-space: pre; line-height: 1.6; }
+        code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; background-color: var(--inline-bg); color: var(--inline-color); padding: 3px 6px; border-radius: 4px; font-size: 14px; }
         .blockcode-container code { background-color: transparent; color: inherit; padding: 0; border-radius: 0; }
     </style>
 </head>
 <body>
     <div class="container">
         <section>
-            <h1>BlockCoin Documentation</h1>
+            <h1 id="mainTitle"></h1>
             <p id="overviewText"></p>
         </section>
 
         <section>
-            <h2>How to Add BlockCoin to Your Game</h2>
+            <h2 id="setupTitle"></h2>
             <ol>
-                <li>Open the official project editor at <a id="editorLink" href="#" target="_blank"></a>.</li>
-                <li>Open your <strong>Backpack</strong> at the bottom of the screen.</li>
-                <li>Drag the sprite named <strong>"Cloud Requests"</strong> into your backpack, then open your own project and drag it in.</li>
-                <li><strong>Important:</strong> You must give credit to <code id="creditUser"></code> in your project's Notes and Credits for the cloud request system!</li>
+                <li><span id="step1Text"></span><a id="editorLink" href="#" target="_blank"></a></li>
+                <li id="step2Text"></li>
+                <li id="step3Text"></li>
+                <li><span id="step4Prefix"></span><code id="creditUser"></code><span id="step4Suffix"></span></li>
             </ol>
         </section>
 
         <section>
-            <h2>Scratch Command Reference</h2>
-            <p>These are the core commands you can run using the blocks inside the <strong>Cloud Requests</strong> sprite:</p>
+            <h2 id="tableTitle"></h2>
+            <p id="tableDescription"></p>
             <table>
                 <thead>
-                    <tr><th>Command Name</th><th>What to Put in Argument 1</th><th>What It Does</th></tr>
+                    <tr>
+                        <th id="thCommand"></th>
+                        <th id="thArgument"></th>
+                        <th id="thAction"></th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr><td><code>get_captcha</code></td><td>Your username variable</td><td>Asks the server for your unique transaction code.</td></tr>
@@ -64,21 +77,22 @@
         </section>
 
         <section>
-            <h2>Official Script Layouts</h2>
-            <p>Recreate these exact blocks inside your project to make payments work seamlessly.</p>
-            <h3>1. The Custom Payment Block (PayCoins Definition)</h3>
+            <h2 id="layoutsTitle"></h2>
+            <p id="layoutsDescription"></p>
+            
+            <h3 id="code1Title"></h3>
             <div class="blockcode-container"><pre><code id="paycoinsBlock"></code></pre></div>
-            <h3>2. Generating and Displaying the Captcha Code</h3>
+            
+            <h3 id="code2Title"></h3>
             <div class="blockcode-container"><pre><code id="captchaBlock"></code></pre></div>
         </section>
     </div>
 
     <script>
-        // Inject design styles and text layers globally from the config object
         if (typeof BlockCoinConfig !== 'undefined') {
             const root = document.documentElement.style;
             
-            // Apply Styling Map Rules
+            // Map Styling Layout Engine Variables
             root.setProperty('--body-bg', BlockCoinConfig.body_background_color);
             root.setProperty('--body-color', BlockCoinConfig.body_text_color);
             root.setProperty('--body-font', BlockCoinConfig.body_font_family);
@@ -89,6 +103,7 @@
             root.setProperty('--h2-size', BlockCoinConfig.h2_font_size);
             root.setProperty('--h2-color', BlockCoinConfig.h2_color);
             root.setProperty('--h2-border', BlockCoinConfig.h2_border_color);
+            root.setProperty('--link-color', BlockCoinConfig.link_color);
             root.setProperty('--table-bg', BlockCoinConfig.table_header_bg);
             root.setProperty('--table-head-color', BlockCoinConfig.table_header_color);
             root.setProperty('--table-border', BlockCoinConfig.table_border_color);
@@ -101,11 +116,31 @@
             root.setProperty('--inline-bg', BlockCoinConfig.inline_code_bg);
             root.setProperty('--inline-color', BlockCoinConfig.inline_code_color);
 
-            // Populate Content Fields
+            // Populate Text Strings
+            document.getElementById('mainTitle').innerText = BlockCoinConfig.main_title;
             document.getElementById('overviewText').innerText = BlockCoinConfig.overview_text;
+            
+            document.getElementById('setupTitle').innerText = BlockCoinConfig.setup_title;
+            document.getElementById('step1Text').innerText = BlockCoinConfig.setup_step_1;
             document.getElementById('editorLink').href = BlockCoinConfig.editor_url;
             document.getElementById('editorLink').innerText = BlockCoinConfig.editor_url;
+            document.getElementById('step2Text').innerText = BlockCoinConfig.setup_step_2;
+            document.getElementById('step3Text').innerText = BlockCoinConfig.setup_step_3;
+            document.getElementById('step4Prefix').innerText = BlockCoinConfig.setup_step_4_prefix;
             document.getElementById('creditUser').innerText = BlockCoinConfig.credit_username;
+            document.getElementById('step4Suffix').innerText = BlockCoinConfig.setup_step_4_suffix;
+
+            document.getElementById('tableTitle').innerText = BlockCoinConfig.table_title;
+            document.getElementById('tableDescription').innerText = BlockCoinConfig.table_description;
+            document.getElementById('thCommand').innerText = BlockCoinConfig.th_command;
+            document.getElementById('thArgument').innerText = BlockCoinConfig.th_argument;
+            document.getElementById('thAction').innerText = BlockCoinConfig.th_action;
+
+            document.getElementById('layoutsTitle').innerText = BlockCoinConfig.layouts_title;
+            document.getElementById('layoutsDescription').innerText = BlockCoinConfig.layouts_description;
+            document.getElementById('code1Title').innerText = BlockCoinConfig.code_1_title;
+            document.getElementById('code2Title').innerText = BlockCoinConfig.code_2_title;
+            
             document.getElementById('paycoinsBlock').textContent = BlockCoinConfig.paycoins_block_text;
             document.getElementById('captchaBlock').textContent = BlockCoinConfig.captcha_block_text;
         }
