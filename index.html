@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlockCoin Documentation</title>
+    <script src="https://cdn.jsdelivr.net/npm/scratchblocks@latest/build/scratchblocks.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/scratchblocks@latest/build/translations-all.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -161,60 +163,22 @@
             margin-bottom: 6px;
         }
 
-        /* BlockCode Asset Manager Component Box */
-        .blockcode-manager {
+        /* BlockCode Render Window Wrapper */
+        .blockcode-container {
             background-color: #ffffff;
             border: 1px solid #e9ecef;
             border-radius: 8px;
             padding: 25px;
-            margin-top: 20px;
+            margin-top: 15px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            text-align: center;
+            overflow-x: auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
 
-        .blockcode-preview {
-            background: radial-gradient(circle, #1a1b26 0%, #111217 100%);
-            border-radius: 6px;
-            padding: 20px;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        canvas {
+        /* Target styles specifically for the scratchblocks SVG outputs */
+        .scratchblocks {
             display: block;
-            background: transparent;
-        }
-
-        .manager-controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .control-btn {
-            background-color: #ff9900;
-            color: #ffffff;
-            border: none;
-            padding: 8px 16px;
-            font-size: 14px;
-            font-weight: 600;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.2s ease;
-        }
-
-        .control-btn:hover {
-            background-color: #e08800;
-        }
-
-        .control-btn.secondary {
-            background-color: #6c757d;
-        }
-
-        .control-btn.secondary:hover {
-            background-color: #5a6268;
+            margin: 0 auto;
         }
 
         /* Responsive Breakpoints */
@@ -237,10 +201,6 @@
                 display: block;
                 padding: 30px 20px;
             }
-            .manager-controls {
-                flex-direction: column;
-                align-items: center;
-            }
         }
     </style>
 </head>
@@ -252,11 +212,10 @@
                 <h2>BlockCoin Suite</h2>
                 <ul>
                     <li><a href="#overview">Overview</a></li>
-                    <li><a href="#blockcode-manager">BlockCode Manager</a></li>
+                    <li><a href="#blockcode-manager">BlockCode Layouts</a></li>
                     <li><a href="#environment-variables">Environment Setup</a></li>
                     <li><a href="#central-queue">Central Queue Engine</a></li>
                     <li><a href="#comment-verification">Comment Verification</a></li>
-                    <li><a href="#scratch-integration">Scratch Logic Rules</a></li>
                 </ul>
             </div>
         </div>
@@ -270,17 +229,57 @@
                 </section>
 
                 <section id="blockcode-manager">
-                    <h2>BlockCode Manager Asset Canvas</h2>
-                    <p>Use the interface below to test out the visual rendering pipeline for your dynamic BlockCoin graphics. This mimics how asset components process cryptographic identities inside the ledger UI layout layers.</p>
+                    <h2>BlockCode Manager (Scratch Layouts)</h2>
+                    <p>Below are the accurate layouts required to build the interface inside your Scratch projects. These are rendered live using standard forum syntax text syntax.</p>
                     
-                    <div class="blockcode-manager">
-                        <div class="blockcode-preview">
-                            <canvas id="blockCoinCanvas" width="200" height="200"></canvas>
-                        </div>
-                        <div class="manager-controls">
-                            <button class="control-btn" onclick="toggleRotation()">Toggle Rotation Spin</button>
-                            <button class="control-btn secondary" onclick="changeColorTheme()">Rotate Color Palette</button>
-                        </div>
+                    <h3>1. Requesting the Verification Code</h3>
+                    <div class="blockcode-container">
+                        <pre class="scratch">
+when this sprite clicked
+ask [Enter your Scratch username:] and wait
+set [username v] to (answer)
+set [server_response v] to (brackets [get_captcha] (username) :: extension)
+if &lt;(server_response) contains [|]&gt; then
+  set [idx v] to [1]
+  set [rule_text v] to []
+  repeat until &lt;(letter (idx) of (server_response)) = [|]&gt;
+    set [rule_text v] to (join (rule_text) (letter (idx) of (server_response)))
+    change [idx v] by (1)
+  end
+  change [idx v] by (1)
+  set [verification_code v] to []
+  repeat until &lt;(idx) &gt; (length of (server_response))&gt;
+    set [verification_code v] to (join (verification_code) (letter (idx) of (server_response)))
+    change [idx v] by (1)
+  end
+  say (rule_text) for (5) secs
+  say (join [Your code is: ] (verification_code))
+else
+  say [Server error. Please try again.] for (3) secs
+end
+                        </pre>
+                    </div>
+
+                    <h3>2. Checking Comment Status</h3>
+                    <div class="blockcode-container">
+                        <pre class="scratch">
+when this sprite clicked
+if &lt;(verification_code) = []&gt; then
+  say [Please request a code first!] for (3) secs
+  stop [this script v]
+end
+say [Checking project comments...] for (2) secs
+set [verify_status v] to (brackets [send_captcha] (username) (verification_code) :: extension)
+if &lt;(verify_status) = [VALIDATED]&gt; then
+  say [Success! Proceeding to transaction...] for (3) secs
+else
+  if &lt;(verify_status) = [ERROR_NOT_COMMENTED_YET]&gt; then
+    say [Code not found yet. Make sure you commented on the project!] for (4) secs
+  else
+    say (join [Verification failed: ] (verify_status)) for (3) secs
+  end
+end
+                        </pre>
                     </div>
                 </section>
 
@@ -307,21 +306,6 @@ time.sleep(0.15)</code></pre>
                         <div class="callout-title">Critical System Requirement</div>
                         <div>The <code>MASTER_PROJECT_ID</code> defined at the top of your server configuration file must point to an active, publicly shared Scratch project with public comments enabled. If the project remains private or unshared, lookups will fail with a <code>ProjectNotFound</code> error.</div>
                     </div>
-
-                    <ol>
-                        <li>The client issues a <code>get_captcha</code> call to query a verification token.</li>
-                        <li>The server maps a new validation key tied directly to the requester's profile.</li>
-                        <li>The player posts that exact phrase as a text comment on your master project page.</li>
-                        <li>The server scans the layout when <code>send_captcha</code> trips and grants authorization upon matching.</li>
-                    </ol>
-                </section>
-
-                <section id="scratch-integration">
-                    <h2>Scratch Integration</h2>
-                    <p>The returned string string uses a custom split string pipeline formatted with a vertical pipe delimiter (<code>|</code>). Your frontend blocks should split the text systematically like this:</p>
-                    <pre><code># Decoded Server Response Example Output Layout Structure
-RULE:Comment this exact code on project 1331635541 then hit Verify|PUZZLE:abc123xyz</code></pre>
-                    <p>Extract the string segment occurring prior to the pipe character to display instruction guidelines directly to your players, and copy the suffix segment to use as their code identifier text string.</p>
                 </section>
 
             </div>
@@ -329,87 +313,13 @@ RULE:Comment this exact code on project 1331635541 then hit Verify|PUZZLE:abc123
     </div>
 
     <script>
-        const canvas = document.getElementById('blockCoinCanvas');
-        const ctx = canvas.getContext('2d');
-        
-        let rotationAngle = 0;
-        let isRotating = true;
-        
-        // Color themes matching decentralized network lookups
-        const colorPalettes = [
-            { primary: '#ff9900', secondary: '#ffcc66', core: '#ffffff' },
-            { primary: '#007bff', secondary: '#66b2ff', core: '#ffffff' },
-            { primary: '#10b981', secondary: '#6ee7b7', core: '#ffffff' },
-            { primary: '#8b5cf6', secondary: '#c084fc', core: '#ffffff' }
-        ];
-        let activePaletteIndex = 0;
-
-        function drawCoin() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            const cx = canvas.width / 2;
-            const cy = canvas.height / 2;
-            const currentTheme = colorPalettes[activePaletteIndex];
-
-            ctx.save();
-            ctx.translate(cx, cy);
-            ctx.rotate(rotationAngle);
-
-            // Draw outer gear border circle
-            ctx.lineWidth = 8;
-            ctx.strokeStyle = currentTheme.primary;
-            ctx.beginPath();
-            ctx.arc(0, 0, 70, 0, Math.PI * 2);
-            ctx.stroke();
-
-            // Draw interior coin face filling structure
-            ctx.fillStyle = '#1e1e24';
-            ctx.beginPath();
-            ctx.arc(0, 0, 66, 0, Math.PI * 2);
-            ctx.fill();
-
-            // Intersecting network node layout accents
-            ctx.lineWidth = 3;
-            ctx.strokeStyle = currentTheme.secondary;
-            for(let i = 0; i < 4; i++) {
-                ctx.rotate(Math.PI / 2);
-                ctx.beginPath();
-                ctx.moveTo(0, -66);
-                ctx.lineTo(0, -40);
-                ctx.stroke();
-            }
-
-            // Central block element drawing routine
-            ctx.fillStyle = currentTheme.primary;
-            ctx.fillRect(-22, -22, 44, 44);
-            
-            // Core accent stamp
-            ctx.fillStyle = currentTheme.core;
-            ctx.font = 'bold 24px monospace';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('B', 0, 2);
-
-            ctx.restore();
-            
-            if (isRotating) {
-                rotationAngle += 0.015;
-            }
-        }
-
-        function toggleRotation() {
-            isRotating = !isRotating;
-        }
-
-        function changeColorTheme() {
-            activePaletteIndex = (activePaletteIndex + 1) % colorPalettes.length;
-        }
-
-        // Run render engine frame ticker loop initialization
-        function tick() {
-            drawCoin();
-            requestAnimationFrame(tick);
-        }
-        tick();
+        document.addEventListener("DOMContentLoaded", function() {
+            // Searches the page for elements matching pre.scratch and converts text to elements
+            scratchblocks.renderMatching("pre.scratch", {
+                style: "scratch3", // Render crisp, modern Scratch 3.0 layout blocks
+                languages: ["en"]
+            });
+        });
     </script>
 </body>
 </html>
