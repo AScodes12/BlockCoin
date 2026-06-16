@@ -47,14 +47,6 @@
             color: #2d3748;
         }
 
-        h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-top: 25px;
-            margin-bottom: 12px;
-            color: #4a5568;
-        }
-
         p {
             margin-bottom: 20px;
             color: #4a5568;
@@ -121,25 +113,6 @@
             color: #4a5568;
         }
 
-        /* Pure Text Code Block Container */
-        .blockcode-container {
-            background-color: #1e1e24;
-            color: #f8f9fa;
-            border-radius: 8px;
-            padding: 22px;
-            margin-top: 5px;
-            margin-bottom: 30px;
-            overflow-x: auto;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        pre {
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-            font-size: 14px;
-            white-space: pre;
-            line-height: 1.6;
-        }
-
         code {
             font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
             background-color: #edf2f7;
@@ -147,13 +120,6 @@
             padding: 3px 6px;
             border-radius: 4px;
             font-size: 14px;
-        }
-
-        .blockcode-container code {
-            background-color: transparent;
-            color: inherit;
-            padding: 0;
-            border-radius: 0;
         }
 
         em {
@@ -233,16 +199,45 @@
             </table>
         </section>
 
-        <section id="blockcode-manager">
-            <h2>Official Script Layouts</h2>
-            <p>Recreate this exact string concatenation block grouping to support user inputs inside your shop or game environment:</p>
-            
-            <h3>The Official Payment Block (PayCoins Definition)</h3>
-            <div class="blockcode-container">
-                <pre><code>define PayCoins (Amount)
-Send Request | request name: [get_captcha] argument1: (username) and wait
-ask [response] and wait
-Send request | request name: [get_owner] and wait
-ask (join (join (join [Do you authorize a transaction of ] (Amount)) [ to ]) (join (response) [ (y/n)])) and wait
-if &lt;(answer) = [y]&gt; then
-  Send request | request name: [transaction] argument1: (Amount) argument2: (username)
+        <section id="safety">
+            <h2>Safety Features</h2>
+            <p>BlockCoin includes standard structural parameters on the network layers to ensure balanced environment behaviors across games:</p>
+            <ul>
+                <li><strong>Identity Checks:</strong> Uses Scratchattach’s built-in platform validation methods to establish account identity.</li>
+                <li><strong>Network Security:</strong> Enforces automated anti-bot scripts and request spam limits directly on the central server instance to guard against data flooding.</li>
+            </ul>
+        </section>
+
+        <section id="troubleshooting">
+            <h2>Quick Troubleshooting</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 35%;">Issue Encountered</th>
+                        <th>Resolution Path</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Transactions are completely stuck on loading</strong></td>
+                        <td>Ensure that your project has gone through the forum application process and has been verified by an administrator. Unverified projects cannot connect.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Verification codes are failing</strong></td>
+                        <td>Remind your players that they must submit the accurate text token as a direct comment on the official project page to clear the captcha wall.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cloud variable connection dropped</strong></td>
+                        <td>Scratch cloud limits can occasionally skip variables during peak times. The backend queue handles this, but players can safely restart the game script if an input fails to register.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <footer style="margin-top: 50px; padding-top: 20px; border-top: 2px solid #edf2f7; text-align: center; color: #718096; font-size: 14px;">
+            <p>Need extra help implementing BlockCoin? Post a question on the official application forum thread or leave a message on our project profile page!</p>
+        </footer>
+
+    </div>
+</body>
+</html>
