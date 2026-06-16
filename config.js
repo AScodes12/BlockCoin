@@ -9,11 +9,10 @@ const BlockCoinConfig = {
     "setup_title": "How to Add BlockCoin to Your Game",
     "setup_step_1": "Open the official project editor at ",
     "editor_url": "https://scratch.mit.edu/projects/1331635541/editor/",
-    "setup_step_2": "Open your Backpack at the bottom of the screen.",
-    "setup_step_3": "Drag the sprite named \"Cloud Requests\" into your backpack, then open your own project and drag it in.",
-    "setup_step_4_prefix": "Important: You must give credit to ",
+    "setup_step_2": "Open your Backpack at the bottom of the screen. Add the sprite named \"Cloud Requests\" into your backpack, then open your own project and add it.",
+    "setup_step_3_prefix": "Important: You must give credit to ",
     "credit_username": "@timmccool",
-    "setup_step_4_suffix": " in your project's Notes and Credits for the cloud request system!",
+    "setup_step_3_suffix": " in your project's Notes and Credits for the cloud request system!",
 
     // Reference Table Strings
     "table_title": "Scratch Command Reference",
