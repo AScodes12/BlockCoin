@@ -27,21 +27,22 @@
         pre { font-family: "SFMono-Regular", Consolas, monospace; font-size: 14px; white-space: pre; line-height: 1.5; }
         code { font-family: "SFMono-Regular", Consolas, monospace; background-color: #f1f3f5; color: #d63384; padding: 2px 6px; border-radius: 4px; font-size: 14px; }
     </style>
+    <script src="config.js"></script>
 </head>
 <body>
     <div class="container">
         <section>
             <h1>BlockCoin Documentation</h1>
-            <p id="overviewText">Loading content...</p>
+            <p id="overviewText"></p>
         </section>
 
         <section>
             <h2>How to Add BlockCoin to Your Game</h2>
             <ol>
-                <li>Open the official project editor at <a id="editorLink" href="#" target="_blank">Loading link...</a>.</li>
+                <li>Open the official project editor at <a id="editorLink" href="#" target="_blank"></a>.</li>
                 <li>Open your <strong>Backpack</strong> at the bottom of the screen.</li>
                 <li>Drag the sprite named <strong>"Cloud Requests"</strong> into your backpack, then open your own project and drag it in.</li>
-                <li><strong>Important:</strong> You must give credit to <code id="creditUser">Loading...</code> in your project's Notes and Credits for the cloud request system!</li>
+                <li><strong>Important:</strong> You must give credit to <code id="creditUser"></code> in your project's Notes and Credits for the cloud request system!</li>
             </ol>
         </section>
 
@@ -64,27 +65,24 @@
             <h2>Official Script Layouts</h2>
             <p>Recreate these exact blocks inside your project to make payments work seamlessly.</p>
             <h3>1. The Custom Payment Block (PayCoins Definition)</h3>
-            <div class="blockcode-container"><pre><code id="paycoinsBlock">Loading blocks...</code></pre></div>
+            <div class="blockcode-container"><pre><code id="paycoinsBlock"></code></pre></div>
             <h3>2. Generating and Displaying the Captcha Code</h3>
-            <div class="blockcode-container"><pre><code id="captchaBlock">Loading blocks...</code></pre></div>
+            <div class="blockcode-container"><pre><code id="captchaBlock"></code></pre></div>
         </section>
     </div>
 
     <script>
-        // Dynamically fetch configurations on layout runtime load
-        fetch('config.json')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('overviewText').innerText = data.overview_text;
-                document.getElementById('editorLink').href = data.editor_url;
-                document.getElementById('editorLink').innerText = data.editor_url;
-                document.getElementById('creditUser').innerText = data.credit_username;
-                document.getElementById('paycoinsBlock').textContent = data.paycoins_block_text;
-                document.getElementById('captchaBlock').textContent = data.captcha_block_text;
-            })
-            .catch(error => {
-                console.error("Error updating text layers from config.json:", error);
-            });
+        // Populate layout fields seamlessly from config.js properties directly
+        if (typeof BlockCoinConfig !== 'undefined') {
+            document.getElementById('overviewText').innerText = BlockCoinConfig.overview_text;
+            document.getElementById('editorLink').href = BlockCoinConfig.editor_url;
+            document.getElementById('editorLink').innerText = BlockCoinConfig.editor_url;
+            document.getElementById('creditUser').innerText = BlockCoinConfig.credit_username;
+            document.getElementById('paycoinsBlock').textContent = BlockCoinConfig.paycoins_block_text;
+            document.getElementById('captchaBlock').textContent = BlockCoinConfig.captcha_block_text;
+        } else {
+            console.error("Could not read configuration variables from config.js.");
+        }
     </script>
 </body>
 </html>
