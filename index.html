@@ -13,125 +13,148 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f7fafc;
-            color: #2d3748;
-            line-height: 1.7;
-            padding: 60px 20px;
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.714;
+            padding: 80px 24px;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 850px;
+            max-width: 800px;
             margin: 0 auto;
             background-color: #ffffff;
-            padding: 40px 50px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
+            padding: 64px 64px;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.02);
+            border: 1px solid #f1f5f9;
         }
 
         /* Typography & Document Styles */
+        header {
+            margin-bottom: 48px;
+        }
+
         h1 {
-            font-size: 36px;
+            font-size: 38px;
             font-weight: 800;
-            margin-bottom: 20px;
-            color: #1a202c;
-            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+            color: #0f172a;
+            letter-spacing: -0.04em;
         }
 
         h2 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
-            margin-top: 45px;
-            margin-bottom: 18px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #edf2f7;
-            color: #2d3748;
+            margin-top: 56px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #0f172a;
+            letter-spacing: -0.02em;
         }
 
         p {
             margin-bottom: 20px;
-            color: #4a5568;
+            color: #475569;
             font-size: 16px;
         }
 
         ol, ul {
             margin-left: 24px;
-            margin-bottom: 20px;
-            color: #4a5568;
+            margin-bottom: 24px;
+            color: #475569;
         }
 
         li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-size: 16px;
+            padding-left: 4px;
         }
 
         a {
-            color: #3182ce;
+            color: #2563eb;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.2s ease;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s ease, color 0.15s ease;
         }
 
         a:hover {
-            color: #2b6cb0;
-            text-decoration: underline;
+            color: #1d4ed8;
+            border-color: #1d4ed8;
         }
 
-        /* Information Callout Boxes */
+        /* Premium Callout Box */
         .callout {
-            background-color: #ebf8ff;
-            border-left: 4px solid #3182ce;
-            color: #2b6cb0;
-            padding: 15px 20px;
-            border-radius: 4px;
-            margin: 20px 0;
+            background-color: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            color: #166534;
+            padding: 16px 20px;
+            border-radius: 6px;
+            margin: 24px 0;
             font-size: 15px;
+            font-weight: 500;
         }
 
-        /* Table layouts */
+        /* Elegant Table Interface Layouts */
         table {
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            margin-bottom: 30px;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 16px;
+            margin-bottom: 32px;
             font-size: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         th, td {
             text-align: left;
-            padding: 14px;
-            border-bottom: 1px solid #edf2f7;
-            vertical-align: top;
+            padding: 14px 18px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
         }
 
         th {
-            background-color: #f7fafc;
+            background-color: #f8fafc;
             font-weight: 600;
-            color: #2d3748;
+            color: #0f172a;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         td {
-            color: #4a5568;
+            color: #475569;
+            background-color: #ffffff;
         }
 
+        /* Styled Inline Variables */
         code {
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-            background-color: #edf2f7;
-            color: #e53e3e;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            background-color: #f1f5f9;
+            color: #64748b;
             padding: 3px 6px;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 14px;
+            border: 1px solid #e2e8f0;
         }
 
         em {
-            color: #718096;
+            color: #64748b;
             font-style: italic;
         }
 
-        @media (max-width: 600px) {
-            body { padding: 20px 10px; }
-            .container { padding: 30px 20px; }
-            h1 { font-size: 28px; }
+        @media (max-width: 640px) {
+            body { padding: 32px 16px; }
+            .container { padding: 32px 24px; }
+            h1 { font-size: 30px; }
             h2 { font-size: 20px; }
+            th, td { padding: 12px 14px; }
         }
     </style>
 </head>
@@ -139,7 +162,7 @@
 
     <div class="container">
         
-        <header>
+        <header id="overview">
             <h1>BlockCoin Documentation</h1>
             <p>Welcome to the official documentation for the BlockCoin currency system for Scratch. This system uses Scratchattach to connect shops and games to a centralized server and then uses a captcha to verify transactions safely and easily.</p>
         </header>
@@ -150,7 +173,7 @@
                 <li>Visit the official BlockCoin project at <a href="https://scratch.mit.edu/projects/1331635541/" target="_blank">scratch.mit.edu/projects/1331635541/</a>.</li>
                 <li>Open your <strong>Backpack</strong> panel at the bottom of the Scratch editor.</li>
                 <li>Drag the <strong>"Cloud Requests"</strong> sprite down into your backpack, open your target project, and drop the sprite inside.</li>
-                <li><strong>Important Representation Requirement:</strong> You must explicitly credit <code>@Timmccool</code> in your project description or notes and credits section for providing the underlying cloud framework.</li>
+                <li><strong>Required Credit:</strong> You must explicitly credit <code>@Timmccool</code> in your project description or notes and credits section for providing the underlying cloud framework.</li>
             </ol>
         </section>
 
@@ -162,7 +185,7 @@
                 <li>Approval timelines typically take between <strong>24 to 48 hours</strong>.</li>
             </ol>
             <div class="callout">
-                <strong>Please Note:</strong> In the meantime, the central server will automatically ignore and fail to process any network requests originating from your unapproved project ID.
+                Please Note: In the meantime, the central server will automatically ignore and fail to process any network requests originating from your unapproved project ID.
             </div>
         </section>
 
@@ -234,7 +257,7 @@
             </table>
         </section>
 
-        <footer style="margin-top: 50px; padding-top: 20px; border-top: 2px solid #edf2f7; text-align: center; color: #718096; font-size: 14px;">
+        <footer style="margin-top: 64px; padding-top: 24px; border-top: 1px solid #e2e8f0; text-align: center; color: #64748b; font-size: 14px;">
             <p>Need extra help implementing BlockCoin? Post a question on the official application forum thread or leave a message on our project profile page!</p>
         </footer>
 
