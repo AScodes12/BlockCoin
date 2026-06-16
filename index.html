@@ -4,30 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlockCoin Documentation</title>
+    <script src="config.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #ffffff; color: #212529; line-height: 1.6; padding: 40px 20px;
+            background-color: var(--body-bg); color: var(--body-color);
+            font-family: var(--body-font); padding: var(--body-pad);
+            line-height: 1.6;
         }
-        .container { max-width: 800px; margin: 0 auto; }
-        h1 { font-size: 32px; font-weight: 700; margin-bottom: 15px; color: #111; }
-        h2 { font-size: 22px; font-weight: 600; margin-top: 40px; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid #e9ecef; color: #222; }
-        h3 { font-size: 16px; font-weight: 600; margin-top: 25px; margin-bottom: 10px; color: #333; }
-        p { margin-bottom: 20px; color: #4a5568; font-size: 16px; }
-        ol { margin-left: 20px; margin-bottom: 20px; color: #4a5568; }
+        .container { max-width: var(--max-width); margin: 0 auto; }
+        h1 { font-size: var(--h1-size); color: var(--h1-color); font-weight: 700; margin-bottom: 15px; }
+        h2 { font-size: var(--h2-size); color: var(--h2-color); border-bottom: 1px solid var(--h2-border); font-weight: 600; margin-top: 40px; margin-bottom: 15px; padding-bottom: 8px; }
+        h3 { font-size: 16px; font-weight: 600; margin-top: 25px; margin-bottom: 10px; color: inherit; opacity: 0.9; }
+        p { margin-bottom: 20px; color: var(--table-text); font-size: 16px; }
+        ol { margin-left: 20px; margin-bottom: 20px; color: var(--table-text); }
         li { margin-bottom: 8px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 25px; font-size: 15px; }
-        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #e9ecef; }
-        th { background-color: #f8f9fa; font-weight: 600; color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 25px; font-size: 15px; color: var(--table-text); }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--table-border); }
+        th { background-color: var(--table-bg); font-weight: 600; color: var(--table-head-color); }
         .blockcode-container {
-            background-color: #1e1e24; color: #f8f9fa; border-radius: 8px;
-            padding: 20px; margin-top: 5px; margin-bottom: 30px; overflow-x: auto;
+            background-color: var(--code-bg); color: var(--code-color); border-radius: var(--code-radius);
+            padding: var(--code-pad); margin-top: 5px; margin-bottom: 30px; overflow-x: auto;
         }
-        pre { font-family: "SFMono-Regular", Consolas, monospace; font-size: 14px; white-space: pre; line-height: 1.5; }
-        code { font-family: "SFMono-Regular", Consolas, monospace; background-color: #f1f3f5; color: #d63384; padding: 2px 6px; border-radius: 4px; font-size: 14px; }
+        pre { font-family: "SFMono-Regular", Consolas, monospace; font-size: var(--code-size); white-space: pre; line-height: 1.5; }
+        code { font-family: "SFMono-Regular", Consolas, monospace; background-color: var(--inline-bg); color: var(--inline-color); padding: 2px 6px; border-radius: 4px; font-size: 14px; }
+        .blockcode-container code { background-color: transparent; color: inherit; padding: 0; border-radius: 0; }
     </style>
-    <script src="config.js"></script>
 </head>
 <body>
     <div class="container">
@@ -54,9 +56,9 @@
                     <tr><th>Command Name</th><th>What to Put in Argument 1</th><th>What It Does</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td><code>get_captcha</code></td><code>username</code><td>Asks the server for your unique transaction code.</td></tr>
-                    <tr><td><code>get_owner</code></td><td></td><td>Finds the username of the person who owns the project.</td></tr>
-                    <tr><td><code>transaction</code></td><td><code>Amount</code></td><td>Takes coins out of the user's account and completes the payment.</td></tr>
+                    <tr><td><code>get_captcha</code></td><td>Your username variable</td><td>Asks the server for your unique transaction code.</td></tr>
+                    <tr><td><code>get_owner</code></td><td>(Leave blank)</td><td>Finds the username of the person who owns the project.</td></tr>
+                    <tr><td><code>transaction</code></td><td>The amount of coins to pay</td><td>Takes coins out of the user's account and completes the payment.</td></tr>
                 </tbody>
             </table>
         </section>
@@ -72,16 +74,40 @@
     </div>
 
     <script>
-        // Populate layout fields seamlessly from config.js properties directly
+        // Inject design styles and text layers globally from the config object
         if (typeof BlockCoinConfig !== 'undefined') {
+            const root = document.documentElement.style;
+            
+            // Apply Styling Map Rules
+            root.setProperty('--body-bg', BlockCoinConfig.body_background_color);
+            root.setProperty('--body-color', BlockCoinConfig.body_text_color);
+            root.setProperty('--body-font', BlockCoinConfig.body_font_family);
+            root.setProperty('--body-pad', BlockCoinConfig.body_padding);
+            root.setProperty('--max-width', BlockCoinConfig.container_max_width);
+            root.setProperty('--h1-size', BlockCoinConfig.h1_font_size);
+            root.setProperty('--h1-color', BlockCoinConfig.h1_color);
+            root.setProperty('--h2-size', BlockCoinConfig.h2_font_size);
+            root.setProperty('--h2-color', BlockCoinConfig.h2_color);
+            root.setProperty('--h2-border', BlockCoinConfig.h2_border_color);
+            root.setProperty('--table-bg', BlockCoinConfig.table_header_bg);
+            root.setProperty('--table-head-color', BlockCoinConfig.table_header_color);
+            root.setProperty('--table-border', BlockCoinConfig.table_border_color);
+            root.setProperty('--table-text', BlockCoinConfig.table_text_color);
+            root.setProperty('--code-bg', BlockCoinConfig.code_window_bg);
+            root.setProperty('--code-color', BlockCoinConfig.code_window_text_color);
+            root.setProperty('--code-radius', BlockCoinConfig.code_window_border_radius);
+            root.setProperty('--code-pad', BlockCoinConfig.code_window_padding);
+            root.setProperty('--code-size', BlockCoinConfig.code_font_size);
+            root.setProperty('--inline-bg', BlockCoinConfig.inline_code_bg);
+            root.setProperty('--inline-color', BlockCoinConfig.inline_code_color);
+
+            // Populate Content Fields
             document.getElementById('overviewText').innerText = BlockCoinConfig.overview_text;
             document.getElementById('editorLink').href = BlockCoinConfig.editor_url;
             document.getElementById('editorLink').innerText = BlockCoinConfig.editor_url;
             document.getElementById('creditUser').innerText = BlockCoinConfig.credit_username;
             document.getElementById('paycoinsBlock').textContent = BlockCoinConfig.paycoins_block_text;
             document.getElementById('captchaBlock').textContent = BlockCoinConfig.captcha_block_text;
-        } else {
-            console.error("Could not read configuration variables from config.js.");
         }
     </script>
 </body>
