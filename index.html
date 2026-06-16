@@ -42,21 +42,13 @@
             color: #222;
         }
 
-        h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-top: 25px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
         p {
             margin-bottom: 20px;
             color: #4a5568;
             font-size: 16px;
         }
 
-        ol {
+        ol, ul {
             margin-left: 20px;
             margin-bottom: 20px;
             color: #4a5568;
@@ -64,6 +56,7 @@
 
         li {
             margin-bottom: 8px;
+            font-size: 16px;
         }
 
         a {
@@ -142,41 +135,49 @@
         </section>
 
         <section id="installation">
-            <h2>How to Add BlockCoin to Your Game</h2>
+            <h2>How to Add BlockCoin to Your Project</h2>
             <ol>
-                <li>Open the official project editor at <a href="https://scratch.mit.edu/projects/1331635541/editor/" target="_blank">https://scratch.mit.edu/projects/1331635541/editor/</a>.</li>
+                <li>Visit the official BlockCoin project at <a href="https://scratch.mit.edu/projects/1331635541/" target="_blank">scratch.mit.edu/projects/1331635541/</a>.</li>
                 <li>Open your <strong>Backpack</strong> at the bottom of the screen.</li>
-                <li>Drag the sprite named <strong>"Cloud Requests"</strong> into your backpack, then open your own project and drag it in.</li>
-                <li><strong>Important:</strong> You must give credit to <code>@timmccool</code> in your project's Notes and Credits for the cloud request system!</li>
+                <li>Backpack the <strong>"Cloud Requests"</strong> sprite and add it into your project.</li>
+                <li>Make sure to credit <code>@Timmccool</code> in your project description or notes and credits.</li>
             </ol>
         </section>
 
+        <section id="approval">
+            <h2>How to Get Approval to Use BlockCoin in Your Project</h2>
+            <p>Visit the official BlockCoin forum page (link) and fill out the application. It should take 24-48 hours to get approval.</p>
+            <p><em>In the meantime, the server will not process any requests from your project.</em></p>
+        </section>
+
+        <section id="usage">
+            <h2>How to Use BlockCoin in Your Project</h2>
+            <p>To perform transactions using BlockCoin, use the <code>PayCoins (amount)</code> custom block.</p>
+            <p>This block will poll the Python server for a captcha that will require the user to comment a verification code on the official project (<a href="https://scratch.mit.edu/projects/1331635541/" target="_blank">scratch.mit.edu/projects/1331635541/</a>).</p>
+        </section>
+
         <section id="scratch-commands">
-            <h2>Scratch Command Reference</h2>
+            <h2>BlockCoin Commands</h2>
             <p>These are the core commands you can run using the blocks inside the <strong>Cloud Requests</strong> sprite:</p>
             <table>
                 <thead>
                     <tr>
                         <th>Command Name</th>
-                        <th>What to Put in Argument 1</th>
                         <th>What It Does</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><code>get_captcha</code></td>
-                        <td>Your username variable</td>
-                        <td>Asks the server for your unique transaction code.</td>
+                        <td>Returns a comment verification captcha to your project.</td>
                     </tr>
                     <tr>
                         <td><code>get_owner</code></td>
-                        <td>(Leave blank)</td>
-                        <td>Finds the username of the person who owns the project.</td>
+                        <td>Finds the registered owner of the project on the server (all transactions will be paid to the owner).</td>
                     </tr>
                     <tr>
                         <td><code>transaction</code></td>
-                        <td>The amount of coins to pay</td>
-                        <td>Takes coins out of the user's account and completes the payment.</td>
+                        <td>Pays an amount to the project owner.</td>
                     </tr>
                 </tbody>
             </table>
@@ -184,45 +185,28 @@
 
         <section id="blockcode-manager">
             <h2>Official Script Layouts</h2>
-            <p>Recreate these exact blocks inside your project to make payments work seamlessly.</p>
+            <p>Recreate these exact blocks inside your project to handle payments seamlessly.</p>
             
-            <h3>1. The Custom Payment Block (PayCoins Definition)</h3>
+            <h3>The Official Payment Block (PayCoins Definition)</h3>
             <div class="blockcode-container">
                 <pre><code>define PayCoins (Amount)
 Send Request | request name: [get_captcha] argument1: (username) and wait
 ask [response] and wait
 Send request | request name: [get_owner] and wait
-ask (join [Do you authorize a transaction of ] (join (Amount) (join [ to ] (join (response) [ (y/n)])))) and wait
+ask (join (join (join [Do you authorize a transaction of ] (Amount)) [ to ]) (join (response) [ (y/n)])) and wait
 if &lt;(answer) = [y]&gt; then
   Send request | request name: [transaction] argument1: (Amount) argument2: (username) and wait
 end</code></pre>
             </div>
+        </section>
 
-            <h3>2. Generating and Displaying the Captcha Code</h3>
-            <div class="blockcode-container">
-                <pre><code>when this sprite clicked
-ask [Enter your Scratch username:] and wait
-set [username v] to (answer)
-set [server_response v] to (brackets [get_captcha] (username) :: extension)
-if &lt;(server_response) contains [|]&gt; then
-  set [idx v] to [1]
-  set [rule_text v] to []
-  repeat until &lt;(letter (idx) of (server_response)) = [|]&gt;
-    set [rule_text v] to (join (rule_text) (letter (idx) of (server_response)))
-    change [idx v] by (1)
-  end
-  change [idx v] by (1)
-  set [verification_code v] to []
-  repeat until &lt;(idx) &gt; (length of (server_response))&gt;
-    set [verification_code v] to (join (verification_code) (letter (idx) of (server_response)))
-    change [idx v] by (1)
-  end
-  say (rule_text) for (5) secs
-  say (join [Your code is: ] (verification_code))
-else
-  say [Server error. Please try again.] for (3) secs
-end</code></pre>
-            </div>
+        <section id="safety">
+            <h2>Safety Features</h2>
+            <p>BlockCoin contains built-in safety features to preserve the integrity of projects on the server and the users using them:</p>
+            <ul>
+                <li>It uses Scratchattach’s built-in verification system.</li>
+                <li>It features anti-bot and spam limiters on the server side.</li>
+            </ul>
         </section>
 
     </div>
