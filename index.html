@@ -13,33 +13,46 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #ffffff;
-            color: #212529;
-            line-height: 1.6;
-            padding: 40px 20px;
+            background-color: #f7fafc;
+            color: #2d3748;
+            line-height: 1.7;
+            padding: 60px 20px;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
+            background-color: #ffffff;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
         }
 
         /* Typography & Document Styles */
         h1 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #111;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #1a202c;
+            letter-spacing: -0.5px;
         }
 
         h2 {
-            font-size: 22px;
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 45px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #edf2f7;
+            color: #2d3748;
+        }
+
+        h3 {
+            font-size: 16px;
             font-weight: 600;
-            margin-top: 40px;
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #e9ecef;
-            color: #222;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            color: #4a5568;
         }
 
         p {
@@ -49,44 +62,63 @@
         }
 
         ol, ul {
-            margin-left: 20px;
+            margin-left: 24px;
             margin-bottom: 20px;
             color: #4a5568;
         }
 
         li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-size: 16px;
         }
 
         a {
             color: #3182ce;
             text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
         }
 
         a:hover {
+            color: #2b6cb0;
             text-decoration: underline;
         }
 
-        /* Table layout for scratch command display system */
+        /* Information Callout Boxes */
+        .callout {
+            background-color: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            color: #2b6cb0;
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+            font-size: 15px;
+        }
+
+        /* Table layouts */
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             font-size: 15px;
         }
 
         th, td {
             text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid #e9ecef;
+            padding: 14px;
+            border-bottom: 1px solid #edf2f7;
+            vertical-align: top;
         }
 
         th {
-            background-color: #f8f9fa;
+            background-color: #f7fafc;
             font-weight: 600;
-            color: #333;
+            color: #2d3748;
+        }
+
+        td {
+            color: #4a5568;
         }
 
         /* Pure Text Code Block Container */
@@ -94,25 +126,25 @@
             background-color: #1e1e24;
             color: #f8f9fa;
             border-radius: 8px;
-            padding: 20px;
+            padding: 22px;
             margin-top: 5px;
             margin-bottom: 30px;
             overflow-x: auto;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
         }
 
         pre {
             font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
             font-size: 14px;
             white-space: pre;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         code {
             font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-            background-color: #f1f3f5;
-            color: #d63384;
-            padding: 2px 6px;
+            background-color: #edf2f7;
+            color: #e53e3e;
+            padding: 3px 6px;
             border-radius: 4px;
             font-size: 14px;
         }
@@ -123,61 +155,79 @@
             padding: 0;
             border-radius: 0;
         }
+
+        em {
+            color: #718096;
+            font-style: italic;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 10px; }
+            .container { padding: 30px 20px; }
+            h1 { font-size: 28px; }
+            h2 { font-size: 20px; }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         
-        <section id="overview">
+        <header>
             <h1>BlockCoin Documentation</h1>
             <p>Welcome to the official documentation for the BlockCoin currency system for Scratch. This system uses Scratchattach to connect shops and games to a centralized server and then uses a captcha to verify transactions safely and easily.</p>
-        </section>
+        </header>
 
         <section id="installation">
             <h2>How to Add BlockCoin to Your Project</h2>
             <ol>
                 <li>Visit the official BlockCoin project at <a href="https://scratch.mit.edu/projects/1331635541/" target="_blank">scratch.mit.edu/projects/1331635541/</a>.</li>
-                <li>Open your <strong>Backpack</strong> at the bottom of the screen.</li>
-                <li>Backpack the <strong>"Cloud Requests"</strong> sprite and add it into your project.</li>
-                <li>Make sure to credit <code>@Timmccool</code> in your project description or notes and credits.</li>
+                <li>Open your <strong>Backpack</strong> panel at the bottom of the Scratch editor.</li>
+                <li>Drag the <strong>"Cloud Requests"</strong> sprite down into your backpack, open your target project, and drop the sprite inside.</li>
+                <li><strong>Important Representation Requirement:</strong> You must explicitly credit <code>@Timmccool</code> in your project description or notes and credits section for providing the underlying cloud framework.</li>
             </ol>
         </section>
 
         <section id="approval">
-            <h2>How to Get Approval to Use BlockCoin in Your Project</h2>
-            <p>Visit the official BlockCoin forum page (link) and fill out the application. It should take 24-48 hours to get approval.</p>
-            <p><em>In the meantime, the server will not process any requests from your project.</em></p>
+            <h2>How to Get Approval to Use BlockCoin</h2>
+            <p>To keep the network secure, all project links must be whitelisted before processing live requests.</p>
+            <ol>
+                <li>Visit the official BlockCoin forum thread (link) and fill out the application.</li>
+                <li>Approval timelines typically take between <strong>24 to 48 hours</strong>.</li>
+            </ol>
+            <div class="callout">
+                <strong>Please Note:</strong> In the meantime, the central server will automatically ignore and fail to process any network requests originating from your unapproved project ID.
+            </div>
         </section>
 
         <section id="usage">
             <h2>How to Use BlockCoin in Your Project</h2>
-            <p>To perform transactions using BlockCoin, use the <code>PayCoins (amount)</code> custom block.</p>
-            <p>This block will poll the Python server for a captcha that will require the user to comment a verification code on the official project (<a href="https://scratch.mit.edu/projects/1331635541/" target="_blank">scratch.mit.edu/projects/1331635541/</a>).</p>
+            <p>To execute financial exchanges or payments using BlockCoin, implement the custom script block <code>PayCoins (amount)</code>.</p>
+            <p>This block communicates with our Python backend to request a unique transaction code. The player is required to type this verification code as a comment on the official root project page (<a href="https://scratch.mit.edu/projects/1331635541/" target="_blank">scratch.mit.edu/projects/1331635541/</a>) to authorize the payment.</p>
         </section>
 
         <section id="scratch-commands">
             <h2>BlockCoin Commands</h2>
-            <p>These are the core commands you can run using the blocks inside the <strong>Cloud Requests</strong> sprite:</p>
+            <p>These are the underlying API endpoint triggers handled by the custom code logic inside the imported <strong>Cloud Requests</strong> sprite module:</p>
             <table>
                 <thead>
                     <tr>
-                        <th>Command Name</th>
+                        <th style="width: 30%;">Command Name</th>
                         <th>What It Does</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><code>get_captcha</code></td>
-                        <td>Returns a comment verification captcha to your project.</td>
+                        <td>Requests a unique comment verification captcha code and returns it to your game project client.</td>
                     </tr>
                     <tr>
                         <td><code>get_owner</code></td>
-                        <td>Finds the registered owner of the project on the server (all transactions will be paid to the owner).</td>
+                        <td>Finds the registered Scratch username of the project creator on the central server (all transaction currency transfers automatically deposit to this account).</td>
                     </tr>
                     <tr>
                         <td><code>transaction</code></td>
-                        <td>Pays an amount to the project owner.</td>
+                        <td>Deducts the verified fund values and completes payment processing to the project owner.</td>
                     </tr>
                 </tbody>
             </table>
@@ -185,7 +235,7 @@
 
         <section id="blockcode-manager">
             <h2>Official Script Layouts</h2>
-            <p>Recreate these exact blocks inside your project to handle payments seamlessly.</p>
+            <p>Recreate this exact string concatenation block grouping to support user inputs inside your shop or game environment:</p>
             
             <h3>The Official Payment Block (PayCoins Definition)</h3>
             <div class="blockcode-container">
@@ -195,20 +245,4 @@ ask [response] and wait
 Send request | request name: [get_owner] and wait
 ask (join (join (join [Do you authorize a transaction of ] (Amount)) [ to ]) (join (response) [ (y/n)])) and wait
 if &lt;(answer) = [y]&gt; then
-  Send request | request name: [transaction] argument1: (Amount) argument2: (username) and wait
-end</code></pre>
-            </div>
-        </section>
-
-        <section id="safety">
-            <h2>Safety Features</h2>
-            <p>BlockCoin contains built-in safety features to preserve the integrity of projects on the server and the users using them:</p>
-            <ul>
-                <li>It uses Scratchattach’s built-in verification system.</li>
-                <li>It features anti-bot and spam limiters on the server side.</li>
-            </ul>
-        </section>
-
-    </div>
-</body>
-</html>
+  Send request | request name: [transaction] argument1: (Amount) argument2: (username)
