@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecosystem Network Docs</title>
+    <title>BlockCoin Documentation</title>
     <style>
         * {
             box-sizing: border-box;
@@ -18,7 +18,7 @@
             line-height: 1.6;
         }
 
-        /* Documentation Layout Structure using table layout for clean columns */
+        /* Documentation Layout Structure */
         .wrapper {
             display: table;
             width: 100%;
@@ -44,7 +44,7 @@
             margin: 0 auto;
         }
 
-        /* Fixed Navigation Sidebar styles */
+        /* Navigation Sidebar */
         .sidebar-fixed {
             position: fixed;
             width: 260px;
@@ -79,7 +79,7 @@
         }
 
         .sidebar-fixed ul li a:hover {
-            color: #007bff;
+            color: #ff9900;
         }
 
         /* Typography & Document Styles */
@@ -148,7 +148,7 @@
         /* Callout Infobox Panels */
         .callout {
             background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
+            border-left: 4px solid #ff9900;
             color: #664d03;
             padding: 16px 20px;
             border-radius: 4px;
@@ -159,6 +159,62 @@
         .callout-title {
             font-weight: 700;
             margin-bottom: 6px;
+        }
+
+        /* BlockCode Asset Manager Component Box */
+        .blockcode-manager {
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            text-align: center;
+        }
+
+        .blockcode-preview {
+            background: radial-gradient(circle, #1a1b26 0%, #111217 100%);
+            border-radius: 6px;
+            padding: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        canvas {
+            display: block;
+            background: transparent;
+        }
+
+        .manager-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .control-btn {
+            background-color: #ff9900;
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .control-btn:hover {
+            background-color: #e08800;
+        }
+
+        .control-btn.secondary {
+            background-color: #6c757d;
+        }
+
+        .control-btn.secondary:hover {
+            background-color: #5a6268;
         }
 
         /* Responsive Breakpoints */
@@ -181,6 +237,10 @@
                 display: block;
                 padding: 30px 20px;
             }
+            .manager-controls {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -189,9 +249,10 @@
     <div class="wrapper">
         <div class="sidebar-cell">
             <div class="sidebar-fixed">
-                <h2>Documentation</h2>
+                <h2>BlockCoin Suite</h2>
                 <ul>
                     <li><a href="#overview">Overview</a></li>
+                    <li><a href="#blockcode-manager">BlockCode Manager</a></li>
                     <li><a href="#environment-variables">Environment Setup</a></li>
                     <li><a href="#central-queue">Central Queue Engine</a></li>
                     <li><a href="#comment-verification">Comment Verification</a></li>
@@ -204,8 +265,23 @@
             <div class="container">
                 
                 <section id="overview">
-                    <h1>Ecosystem Network Documentation</h1>
-                    <p>Welcome to the multi-project currency network dashboard documentation. This system handles distributed requests asynchronously across multiple active Scratch projects using a dedicated thread pool and centralized serialization to remain completely clear of rate limits.</p>
+                    <h1>BlockCoin Network Documentation</h1>
+                    <p>Welcome to the official documentation for the BlockCoin Ledger ecosystem. This system orchestrates and records balances across multiple distributed gaming instances on the Scratch network securely using a specialized back-end queue processor.</p>
+                </section>
+
+                <section id="blockcode-manager">
+                    <h2>BlockCode Manager Asset Canvas</h2>
+                    <p>Use the interface below to test out the visual rendering pipeline for your dynamic BlockCoin graphics. This mimics how asset components process cryptographic identities inside the ledger UI layout layers.</p>
+                    
+                    <div class="blockcode-manager">
+                        <div class="blockcode-preview">
+                            <canvas id="blockCoinCanvas" width="200" height="200"></canvas>
+                        </div>
+                        <div class="manager-controls">
+                            <button class="control-btn" onclick="toggleRotation()">Toggle Rotation Spin</button>
+                            <button class="control-btn secondary" onclick="changeColorTheme()">Rotate Color Palette</button>
+                        </div>
+                    </div>
                 </section>
 
                 <section id="environment-variables">
@@ -252,5 +328,88 @@ RULE:Comment this exact code on project 1331635541 then hit Verify|PUZZLE:abc123
         </div>
     </div>
 
+    <script>
+        const canvas = document.getElementById('blockCoinCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let rotationAngle = 0;
+        let isRotating = true;
+        
+        // Color themes matching decentralized network lookups
+        const colorPalettes = [
+            { primary: '#ff9900', secondary: '#ffcc66', core: '#ffffff' },
+            { primary: '#007bff', secondary: '#66b2ff', core: '#ffffff' },
+            { primary: '#10b981', secondary: '#6ee7b7', core: '#ffffff' },
+            { primary: '#8b5cf6', secondary: '#c084fc', core: '#ffffff' }
+        ];
+        let activePaletteIndex = 0;
+
+        function drawCoin() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            const currentTheme = colorPalettes[activePaletteIndex];
+
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(rotationAngle);
+
+            // Draw outer gear border circle
+            ctx.lineWidth = 8;
+            ctx.strokeStyle = currentTheme.primary;
+            ctx.beginPath();
+            ctx.arc(0, 0, 70, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // Draw interior coin face filling structure
+            ctx.fillStyle = '#1e1e24';
+            ctx.beginPath();
+            ctx.arc(0, 0, 66, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Intersecting network node layout accents
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = currentTheme.secondary;
+            for(let i = 0; i < 4; i++) {
+                ctx.rotate(Math.PI / 2);
+                ctx.beginPath();
+                ctx.moveTo(0, -66);
+                ctx.lineTo(0, -40);
+                ctx.stroke();
+            }
+
+            // Central block element drawing routine
+            ctx.fillStyle = currentTheme.primary;
+            ctx.fillRect(-22, -22, 44, 44);
+            
+            // Core accent stamp
+            ctx.fillStyle = currentTheme.core;
+            ctx.font = 'bold 24px monospace';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('B', 0, 2);
+
+            ctx.restore();
+            
+            if (isRotating) {
+                rotationAngle += 0.015;
+            }
+        }
+
+        function toggleRotation() {
+            isRotating = !isRotating;
+        }
+
+        function changeColorTheme() {
+            activePaletteIndex = (activePaletteIndex + 1) % colorPalettes.length;
+        }
+
+        // Run render engine frame ticker loop initialization
+        function tick() {
+            drawCoin();
+            requestAnimationFrame(tick);
+        }
+        tick();
+    </script>
 </body>
 </html>
