@@ -4,146 +4,227 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlockCoin Documentation</title>
-    <script src="config.js"></script>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            background-color: var(--body-bg); color: var(--body-color);
-            font-family: var(--body-font); padding: var(--body-pad);
-            line-height: 1.7;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        .container { max-width: var(--max-width); margin: 0 auto; }
-        
-        h1 { font-size: var(--h1-size); color: var(--h1-color); font-weight: 700; margin-bottom: 20px; letter-spacing: -0.5px; }
-        h2 { font-size: var(--h2-size); color: var(--h2-color); border-bottom: 2px solid var(--h2-border); font-weight: 600; margin-top: 45px; margin-bottom: 20px; padding-bottom: 8px; }
-        h3 { font-size: 16px; font-weight: 600; margin-top: 25px; margin-bottom: 12px; color: inherit; opacity: 0.9; }
-        
-        p { margin-bottom: 20px; font-size: 16px; }
-        ol { margin-left: 24px; margin-bottom: 25px; }
-        li { margin-bottom: 10px; font-size: 16px; }
-        
-        a { color: var(--link-color); text-decoration: none; font-weight: 500; }
-        a:hover { text-decoration: underline; }
 
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 30px; font-size: 15px; }
-        th, td { text-align: left; padding: 14px; border-bottom: 1px solid var(--table-border); }
-        th { background-color: var(--table-bg); font-weight: 600; color: var(--table-head-color); }
-        td { color: var(--table-text); }
-        
-        .blockcode-container {
-            background-color: var(--code-bg); color: var(--code-color); border-radius: var(--code-radius);
-            padding: var(--code-pad); margin-top: 5px; margin-bottom: 30px; overflow-x: auto;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            color: #212529;
+            line-height: 1.6;
+            padding: 40px 20px;
         }
-        pre { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: var(--code-size); white-space: pre; line-height: 1.6; }
-        code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; background-color: var(--inline-bg); color: var(--inline-color); padding: 3px 6px; border-radius: 4px; font-size: 14px; }
-        .blockcode-container code { background-color: transparent; color: inherit; padding: 0; border-radius: 0; }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Typography & Document Styles */
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #111;
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e9ecef;
+            color: #222;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #4a5568;
+            font-size: 16px;
+        }
+
+        ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+            color: #4a5568;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        a {
+            color: #3182ce;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Table layout for scratch command display system */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Pure Text Code Block Container */
+        .blockcode-container {
+            background-color: #1e1e24;
+            color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 5px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        pre {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 14px;
+            white-space: pre;
+            line-height: 1.5;
+        }
+
+        code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            background-color: #f1f3f5;
+            color: #d63384;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .blockcode-container code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+        }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <section>
-            <h1 id="mainTitle"></h1>
-            <p id="overviewText"></p>
+        
+        <section id="overview">
+            <h1>BlockCoin Documentation</h1>
+            <p>Welcome to the official documentation for the BlockCoin currency system for Scratch. This system uses Scratchattach to connect shops and games to a centralized server and then uses a captcha to verify transactions safely and easily.</p>
         </section>
 
-        <section>
-            <h2 id="setupTitle"></h2>
+        <section id="installation">
+            <h2>How to Add BlockCoin to Your Game</h2>
             <ol>
-                <li><span id="step1Text"></span><a id="editorLink" href="#" target="_blank"></a></li>
-                <li id="step2Text"></li>
-                <li id="step3Text"></li>
-                <li><span id="step4Prefix"></span><code id="creditUser"></code><span id="step4Suffix"></span></li>
+                <li>Open the official project editor at <a href="https://scratch.mit.edu/projects/1331635541/editor/" target="_blank">https://scratch.mit.edu/projects/1331635541/editor/</a>.</li>
+                <li>Open your <strong>Backpack</strong> at the bottom of the screen.</li>
+                <li>Drag the sprite named <strong>"Cloud Requests"</strong> into your backpack, then open your own project and drag it in.</li>
+                <li><strong>Important:</strong> You must give credit to <code>@timmccool</code> in your project's Notes and Credits for the cloud request system!</li>
             </ol>
         </section>
 
-        <section>
-            <h2 id="tableTitle"></h2>
-            <p id="tableDescription"></p>
+        <section id="scratch-commands">
+            <h2>Scratch Command Reference</h2>
+            <p>These are the core commands you can run using the blocks inside the <strong>Cloud Requests</strong> sprite:</p>
             <table>
                 <thead>
                     <tr>
-                        <th id="thCommand"></th>
-                        <th id="thArgument"></th>
-                        <th id="thAction"></th>
+                        <th>Command Name</th>
+                        <th>What to Put in Argument 1</th>
+                        <th>What It Does</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td><code>get_captcha</code></td><td>Your username variable</td><td>Asks the server for your unique transaction code.</td></tr>
-                    <tr><td><code>get_owner</code></td><td>(Leave blank)</td><td>Finds the username of the person who owns the project.</td></tr>
-                    <tr><td><code>transaction</code></td><td>The amount of coins to pay</td><td>Takes coins out of the user's account and completes the payment.</td></tr>
+                    <tr>
+                        <td><code>get_captcha</code></td>
+                        <td>Your username variable</td>
+                        <td>Asks the server for your unique transaction code.</td>
+                    </tr>
+                    <tr>
+                        <td><code>get_owner</code></td>
+                        <td>(Leave blank)</td>
+                        <td>Finds the username of the person who owns the project.</td>
+                    </tr>
+                    <tr>
+                        <td><code>transaction</code></td>
+                        <td>The amount of coins to pay</td>
+                        <td>Takes coins out of the user's account and completes the payment.</td>
+                    </tr>
                 </tbody>
             </table>
         </section>
 
-        <section>
-            <h2 id="layoutsTitle"></h2>
-            <p id="layoutsDescription"></p>
+        <section id="blockcode-manager">
+            <h2>Official Script Layouts</h2>
+            <p>Recreate these exact blocks inside your project to make payments work seamlessly.</p>
             
-            <h3 id="code1Title"></h3>
-            <div class="blockcode-container"><pre><code id="paycoinsBlock"></code></pre></div>
-            
-            <h3 id="code2Title"></h3>
-            <div class="blockcode-container"><pre><code id="captchaBlock"></code></pre></div>
+            <h3>1. The Custom Payment Block (PayCoins Definition)</h3>
+            <div class="blockcode-container">
+                <pre><code>define PayCoins (Amount)
+Send Request | request name: [get_captcha] argument1: (username) and wait
+ask [response] and wait
+Send request | request name: [get_owner] and wait
+ask (join [Do you authorize a transaction of ] (join (Amount) (join [ to ] (join (response) [ (y/n)])))) and wait
+if &lt;(answer) = [y]&gt; then
+  Send request | request name: [transaction] argument1: (Amount) argument2: (username) and wait
+end</code></pre>
+            </div>
+
+            <h3>2. Generating and Displaying the Captcha Code</h3>
+            <div class="blockcode-container">
+                <pre><code>when this sprite clicked
+ask [Enter your Scratch username:] and wait
+set [username v] to (answer)
+set [server_response v] to (brackets [get_captcha] (username) :: extension)
+if &lt;(server_response) contains [|]&gt; then
+  set [idx v] to [1]
+  set [rule_text v] to []
+  repeat until &lt;(letter (idx) of (server_response)) = [|]&gt;
+    set [rule_text v] to (join (rule_text) (letter (idx) of (server_response)))
+    change [idx v] by (1)
+  end
+  change [idx v] by (1)
+  set [verification_code v] to []
+  repeat until &lt;(idx) &gt; (length of (server_response))&gt;
+    set [verification_code v] to (join (verification_code) (letter (idx) of (server_response)))
+    change [idx v] by (1)
+  end
+  say (rule_text) for (5) secs
+  say (join [Your code is: ] (verification_code))
+else
+  say [Server error. Please try again.] for (3) secs
+end</code></pre>
+            </div>
         </section>
+
     </div>
-
-    <script>
-        if (typeof BlockCoinConfig !== 'undefined') {
-            const root = document.documentElement.style;
-            
-            // Map Styling Layout Engine Variables
-            root.setProperty('--body-bg', BlockCoinConfig.body_background_color);
-            root.setProperty('--body-color', BlockCoinConfig.body_text_color);
-            root.setProperty('--body-font', BlockCoinConfig.body_font_family);
-            root.setProperty('--body-pad', BlockCoinConfig.body_padding);
-            root.setProperty('--max-width', BlockCoinConfig.container_max_width);
-            root.setProperty('--h1-size', BlockCoinConfig.h1_font_size);
-            root.setProperty('--h1-color', BlockCoinConfig.h1_color);
-            root.setProperty('--h2-size', BlockCoinConfig.h2_font_size);
-            root.setProperty('--h2-color', BlockCoinConfig.h2_color);
-            root.setProperty('--h2-border', BlockCoinConfig.h2_border_color);
-            root.setProperty('--link-color', BlockCoinConfig.link_color);
-            root.setProperty('--table-bg', BlockCoinConfig.table_header_bg);
-            root.setProperty('--table-head-color', BlockCoinConfig.table_header_color);
-            root.setProperty('--table-border', BlockCoinConfig.table_border_color);
-            root.setProperty('--table-text', BlockCoinConfig.table_text_color);
-            root.setProperty('--code-bg', BlockCoinConfig.code_window_bg);
-            root.setProperty('--code-color', BlockCoinConfig.code_window_text_color);
-            root.setProperty('--code-radius', BlockCoinConfig.code_window_border_radius);
-            root.setProperty('--code-pad', BlockCoinConfig.code_window_padding);
-            root.setProperty('--code-size', BlockCoinConfig.code_font_size);
-            root.setProperty('--inline-bg', BlockCoinConfig.inline_code_bg);
-            root.setProperty('--inline-color', BlockCoinConfig.inline_code_color);
-
-            // Populate Text Strings
-            document.getElementById('mainTitle').innerText = BlockCoinConfig.main_title;
-            document.getElementById('overviewText').innerText = BlockCoinConfig.overview_text;
-            
-            document.getElementById('setupTitle').innerText = BlockCoinConfig.setup_title;
-            document.getElementById('step1Text').innerText = BlockCoinConfig.setup_step_1;
-            document.getElementById('editorLink').href = BlockCoinConfig.editor_url;
-            document.getElementById('editorLink').innerText = BlockCoinConfig.editor_url;
-            document.getElementById('step2Text').innerText = BlockCoinConfig.setup_step_2;
-            document.getElementById('step3Text').innerText = BlockCoinConfig.setup_step_3;
-            document.getElementById('step4Prefix').innerText = BlockCoinConfig.setup_step_4_prefix;
-            document.getElementById('creditUser').innerText = BlockCoinConfig.credit_username;
-            document.getElementById('step4Suffix').innerText = BlockCoinConfig.setup_step_4_suffix;
-
-            document.getElementById('tableTitle').innerText = BlockCoinConfig.table_title;
-            document.getElementById('tableDescription').innerText = BlockCoinConfig.table_description;
-            document.getElementById('thCommand').innerText = BlockCoinConfig.th_command;
-            document.getElementById('thArgument').innerText = BlockCoinConfig.th_argument;
-            document.getElementById('thAction').innerText = BlockCoinConfig.th_action;
-
-            document.getElementById('layoutsTitle').innerText = BlockCoinConfig.layouts_title;
-            document.getElementById('layoutsDescription').innerText = BlockCoinConfig.layouts_description;
-            document.getElementById('code1Title').innerText = BlockCoinConfig.code_1_title;
-            document.getElementById('code2Title').innerText = BlockCoinConfig.code_2_title;
-            
-            document.getElementById('paycoinsBlock').textContent = BlockCoinConfig.paycoins_block_text;
-            document.getElementById('captchaBlock').textContent = BlockCoinConfig.captcha_block_text;
-        }
-    </script>
 </body>
 </html>
