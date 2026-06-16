@@ -12,22 +12,23 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f8fafc;
-            color: #334155;
-            line-height: 1.714;
+            /* Angular, crisp font stack using system-ui mono elements or clean sans fonts */
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
             padding: 80px 24px;
+            letter-spacing: -0.01em;
             -webkit-font-smoothing: antialiased;
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background-color: #ffffff;
-            padding: 64px 64px;
-            border-radius: 16px;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.02);
-            border: 1px solid #f1f5f9;
+            background-color: #0a0a0a;
+            padding: 64px;
+            border-radius: 0px; /* Fully angular edges instead of curves */
+            border: 1px solid #1f1f1f;
         }
 
         /* Typography & Document Styles */
@@ -39,121 +40,120 @@
             font-size: 38px;
             font-weight: 800;
             margin-bottom: 16px;
-            color: #0f172a;
+            color: #ffffff;
             letter-spacing: -0.04em;
+            text-transform: uppercase; /* Makes it feel more boxy and geometric */
         }
 
         h2 {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             margin-top: 56px;
             margin-bottom: 20px;
             padding-bottom: 12px;
-            border-bottom: 1px solid #e2e8f0;
-            color: #0f172a;
+            border-bottom: 1px solid #1f1f1f;
+            color: #ffffff;
             letter-spacing: -0.02em;
+            text-transform: uppercase;
         }
 
         p {
             margin-bottom: 20px;
-            color: #475569;
-            font-size: 16px;
+            color: #a0a0a0;
+            font-size: 15px;
         }
 
         ol, ul {
             margin-left: 24px;
             margin-bottom: 24px;
-            color: #475569;
+            color: #a0a0a0;
         }
 
         li {
             margin-bottom: 12px;
-            font-size: 16px;
+            font-size: 15px;
             padding-left: 4px;
         }
 
         a {
-            color: #2563eb;
+            color: #ffffff;
             text-decoration: none;
-            font-weight: 500;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.15s ease, color 0.15s ease;
+            font-weight: 600;
+            border-bottom: 1px dashed #ffffff;
+            transition: color 0.15s ease, border-color 0.15s ease;
         }
 
         a:hover {
-            color: #1d4ed8;
-            border-color: #1d4ed8;
+            color: #a0a0a0;
+            border-bottom: 1px solid #a0a0a0;
         }
 
-        /* Premium Callout Box */
+        /* High-Contrast Angular Callout Box */
         .callout {
-            background-color: #f0fdf4;
-            border-left: 4px solid #22c55e;
-            color: #166534;
+            background-color: #0e1710;
+            border-left: 3px solid #22c55e;
+            color: #4ade80;
             padding: 16px 20px;
-            border-radius: 6px;
+            border-radius: 0px;
             margin: 24px 0;
-            font-size: 15px;
-            font-weight: 500;
+            font-size: 14px;
         }
 
-        /* Elegant Table Interface Layouts */
+        /* High-Contrast Sharp Grid/Table System */
         table {
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
+            border-collapse: collapse;
             margin-top: 16px;
             margin-bottom: 32px;
-            font-size: 15px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            overflow: hidden;
+            font-size: 14px;
+            border: 1px solid #1f1f1f;
         }
 
         th, td {
             text-align: left;
             padding: 14px 18px;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid #1f1f1f;
             vertical-align: middle;
         }
 
-        tr:last-child td {
-            border-bottom: none;
-        }
-
         th {
-            background-color: #f8fafc;
-            font-weight: 600;
-            color: #0f172a;
-            border-bottom: 1px solid #e2e8f0;
+            background-color: #121212;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 0.05em;
         }
 
         td {
-            color: #475569;
-            background-color: #ffffff;
+            color: #a0a0a0;
+            background-color: #050505;
         }
 
-        /* Styled Inline Variables */
+        /* Angular Inline Variable Highlights */
         code {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            background-color: #f1f5f9;
-            color: #64748b;
+            background-color: #16161a;
+            color: #ffffff;
             padding: 3px 6px;
-            border-radius: 6px;
-            font-size: 14px;
-            border: 1px solid #e2e8f0;
+            border-radius: 0px;
+            font-size: 13px;
+            border: 1px solid #2a2a30;
         }
 
         em {
-            color: #64748b;
-            font-style: italic;
+            color: #71717a;
+            font-style: normal; /* Removes slants to maintain the completely angular block aesthetic */
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.05em;
         }
 
         @media (max-width: 640px) {
             body { padding: 32px 16px; }
             .container { padding: 32px 24px; }
-            h1 { font-size: 30px; }
-            h2 { font-size: 20px; }
+            h1 { font-size: 28px; }
+            h2 { font-size: 18px; }
             th, td { padding: 12px 14px; }
         }
     </style>
@@ -185,7 +185,7 @@
                 <li>Approval timelines typically take between <strong>24 to 48 hours</strong>.</li>
             </ol>
             <div class="callout">
-                Please Note: In the meantime, the central server will automatically ignore and fail to process any network requests originating from your unapproved project ID.
+                NOTICE: In the meantime, the central server will automatically ignore and fail to process any network requests originating from your unapproved project ID.
             </div>
         </section>
 
@@ -201,7 +201,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 30%;">Command Name</th>
+                        <th style="width: 35%;">Command Name</th>
                         <th>What It Does</th>
                     </tr>
                 </thead>
@@ -236,7 +236,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 35%;">Issue Encountered</th>
+                        <th style="width: 40%;">Issue Encountered</th>
                         <th>Resolution Path</th>
                     </tr>
                 </thead>
@@ -257,7 +257,7 @@
             </table>
         </section>
 
-        <footer style="margin-top: 64px; padding-top: 24px; border-top: 1px solid #e2e8f0; text-align: center; color: #64748b; font-size: 14px;">
+        <footer style="margin-top: 64px; padding-top: 24px; border-top: 1px solid #1f1f1f; text-align: center; color: #52525b; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;">
             <p>Need extra help implementing BlockCoin? Post a question on the official application forum thread or leave a message on our project profile page!</p>
         </footer>
 
