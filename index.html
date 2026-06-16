@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlockCoin Documentation</title>
-    <script src="https://cdn.jsdelivr.net/npm/scratchblocks@latest/build/scratchblocks.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/scratchblocks@latest/build/translations-all.js"></script>
+    <script src="https://unpkg.com/scratchblocks@3.6.4/build/scratchblocks.min.js"></script>
+    <script src="https://unpkg.com/scratchblocks@3.6.4/build/translations-all.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -102,6 +102,14 @@
             color: #222;
         }
 
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
         p {
             margin-bottom: 20px;
             color: #4a5568;
@@ -156,6 +164,7 @@
             border-radius: 4px;
             margin-bottom: 25px;
             font-size: 15px;
+            text-align: left;
         }
 
         .callout-title {
@@ -169,16 +178,16 @@
             border: 1px solid #e9ecef;
             border-radius: 8px;
             padding: 25px;
-            margin-top: 15px;
+            margin-top: 5px;
             margin-bottom: 30px;
             overflow-x: auto;
             box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            text-align: left;
         }
 
-        /* Target styles specifically for the scratchblocks SVG outputs */
         .scratchblocks {
             display: block;
-            margin: 0 auto;
+            margin: 0;
         }
 
         /* Responsive Breakpoints */
@@ -209,7 +218,7 @@
     <div class="wrapper">
         <div class="sidebar-cell">
             <div class="sidebar-fixed">
-                <h2>BlockCoin Suite</h2>
+                <h2>BlockCoin Docs</h2>
                 <ul>
                     <li><a href="#overview">Overview</a></li>
                     <li><a href="#blockcode-manager">BlockCode Layouts</a></li>
@@ -224,7 +233,7 @@
             <div class="container">
                 
                 <section id="overview">
-                    <h1>BlockCoin Network Documentation</h1>
+                    <h1>BlockCoin Documentation</h1>
                     <p>Welcome to the official documentation for the BlockCoin Ledger ecosystem. This system orchestrates and records balances across multiple distributed gaming instances on the Scratch network securely using a specialized back-end queue processor.</p>
                 </section>
 
@@ -313,12 +322,15 @@ time.sleep(0.15)</code></pre>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Searches the page for elements matching pre.scratch and converts text to elements
-            scratchblocks.renderMatching("pre.scratch", {
-                style: "scratch3", // Render crisp, modern Scratch 3.0 layout blocks
-                languages: ["en"]
-            });
+        window.addEventListener("load", function() {
+            if (typeof scratchblocks !== "undefined") {
+                scratchblocks.renderMatching("pre.scratch", {
+                    style: "scratch3", 
+                    languages: ["en"]
+                });
+            } else {
+                console.error("Scratchblocks CDN could not be reached.");
+            }
         });
     </script>
 </body>
