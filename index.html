@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlockCoin Documentation</title>
-    <script src="https://unpkg.com/scratchblocks@3.6.4/build/scratchblocks.min.js"></script>
-    <script src="https://unpkg.com/scratchblocks@3.6.4/build/translations-all.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -58,7 +56,7 @@
             font-size: 16px;
         }
 
-        ul, ol {
+        ol {
             margin-left: 20px;
             margin-bottom: 20px;
             color: #4a5568;
@@ -68,7 +66,7 @@
             margin-bottom: 8px;
         }
 
-        /* Table layout for command matrix display system */
+        /* Table layout for scratch command display system */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -89,16 +87,23 @@
             color: #333;
         }
 
-        /* Monospace Code Styling Blocks */
-        pre {
+        /* Pure Text Code Block Container */
+        .blockcode-container {
             background-color: #1e1e24;
             color: #f8f9fa;
-            padding: 18px;
-            border-radius: 6px;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 5px;
+            margin-bottom: 30px;
             overflow-x: auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        pre {
             font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
             font-size: 14px;
-            margin-bottom: 25px;
+            white-space: pre;
+            line-height: 1.5;
         }
 
         code {
@@ -110,28 +115,11 @@
             font-size: 14px;
         }
 
-        pre code {
+        .blockcode-container code {
             background-color: transparent;
             color: inherit;
             padding: 0;
             border-radius: 0;
-        }
-
-        /* BlockCode Render Window Wrapper */
-        .blockcode-container {
-            background-color: #ffffff;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 25px;
-            margin-top: 5px;
-            margin-bottom: 30px;
-            overflow-x: auto;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-        }
-
-        .scratchblocks {
-            display: block;
-            margin: 0;
         }
     </style>
 </head>
@@ -145,72 +133,65 @@
         </section>
 
         <section id="installation">
-            <h2>Project Setup & Integration</h2>
-            <p>To implement BlockCoin into your own custom Scratch games, follow these implementation steps:</p>
+            <h2>How to Add BlockCoin to Your Game</h2>
             <ol>
-                <li>Open the official master project editor at <a href="https://scratch.mit.edu/projects/1331635541/editor/" target="_blank">https://scratch.mit.edu/projects/1331635541/editor/</a>, open your backpack menu, and drag the sprite named <strong>"Cloud Requests"</strong> inside. Paste this sprite directly into your target game project.</li>
-                <li>This network relies on the cloud request infrastructure created by <strong>@timmccool</strong>. You <strong>MUST</strong> provide explicit credit to <code>@timmccool</code> within your project description fields before sharing your game online.</li>
+                <li>Open the official project editor at <a href="https://scratch.mit.edu/projects/1331635541/editor/" target="_blank">https://scratch.mit.edu/projects/1331635541/editor/</a>.</li>
+                <li>Open your <strong>Backpack</strong> at the bottom of the screen.</li>
+                <li>Drag the sprite named <strong>"Cloud Requests"</strong> into your backpack, then open your own project and drag it in.</li>
+                <li><strong>Important:</strong> You must give credit to <code>@timmccool</code> in your project's Notes and Credits for the cloud request system!</li>
             </ol>
         </section>
 
         <section id="scratch-commands">
-            <h2>Scratch Command Matrix Reference</h2>
-            <p>The table below summarizes the core cross-network client calls available inside the cloud requests module:</p>
+            <h2>Scratch Command Reference</h2>
+            <p>These are the core commands you can run using the blocks inside the <strong>Cloud Requests</strong> sprite:</p>
             <table>
                 <thead>
                     <tr>
-                        <th>Command Method Name</th>
-                        <th>Function Input Argument</th>
-                        <th>Expected Server Response Behavior</th>
+                        <th>Command Name</th>
+                        <th>What to Put in Argument 1</th>
+                        <th>What It Does</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><code>get_captcha</code></td>
-                        <td><code>username</code></td>
-                        <td>Returns a raw parsing rule string merged with a unique validation code token.</td>
+                        <td>Your username variable</td>
+                        <td>Asks the server for your unique transaction code.</td>
                     </tr>
                     <tr>
                         <td><code>get_owner</code></td>
-                        <td>None</td>
-                        <td>Returns the active profile username string of the project channel owner.</td>
+                        <td>(Leave blank)</td>
+                        <td>Finds the username of the person who owns the project.</td>
                     </tr>
                     <tr>
                         <td><code>transaction</code></td>
-                        <td><code>Amount</code>, <code>username</code></td>
-                        <td>Deducts funds from the user, updates logs, and returns the modified current balance value.</td>
-                    </tr>
-                    <tr>
-                        <td><code>send_captcha</code></td>
-                        <td><code>username</code>, <code>verification_code</code></td>
-                        <td>Checks project comments; returns <code>VALIDATED</code> or error strings.</td>
+                        <td>The amount of coins to pay</td>
+                        <td>Takes coins out of the user's account and completes the payment.</td>
                     </tr>
                 </tbody>
             </table>
         </section>
 
         <section id="blockcode-manager">
-            <h2>Official Logic Blocks</h2>
-            <p>Below are the accurate layouts required to handle secure payment requests and transaction verification routines within your game interface:</p>
+            <h2>Official Script Layouts</h2>
+            <p>Recreate these exact blocks inside your project to make payments work seamlessly.</p>
             
-            <h3>Official Payment Request Function (PayCoins)</h3>
+            <h3>1. The Custom Payment Block (PayCoins Definition)</h3>
             <div class="blockcode-container">
-                <pre class="scratch">
-define PayCoins (Amount)
-Send Request | request name: [get_captcha] argument1: (username) and wait :: custom
+                <pre><code>define PayCoins (Amount)
+Send Request | request name: [get_captcha] argument1: (username) and wait
 ask [response] and wait
-Send request | request name: [get_owner] and wait :: custom
+Send request | request name: [get_owner] and wait
 ask (join [Do you authorize a transaction of ] (join (Amount) (join [ to ] (join (response) [ (y/n)])))) and wait
 if &lt;(answer) = [y]&gt; then
-  Send request | request name: [transaction] argument1: (Amount) argument2: (username) and wait :: custom
-end
-                </pre>
+  Send request | request name: [transaction] argument1: (Amount) argument2: (username) and wait
+end</code></pre>
             </div>
 
-            <h3>Verification Script Parsing Context</h3>
+            <h3>2. Generating and Displaying the Captcha Code</h3>
             <div class="blockcode-container">
-                <pre class="scratch">
-when this sprite clicked
+                <pre><code>when this sprite clicked
 ask [Enter your Scratch username:] and wait
 set [username v] to (answer)
 set [server_response v] to (brackets [get_captcha] (username) :: extension)
@@ -231,37 +212,10 @@ if &lt;(server_response) contains [|]&gt; then
   say (join [Your code is: ] (verification_code))
 else
   say [Server error. Please try again.] for (3) secs
-end
-                </pre>
+end</code></pre>
             </div>
         </section>
 
-        <section id="environment-variables">
-            <h2>Environment Setup</h2>
-            <p>The backend requires specific secure variables exposed inside the hosting instance environment to link up with your Scratch account cleanly.</p>
-            <pre><code># Required System Context Keys
-export SCRATCH_USER2="YourScratchAccountUsername"
-export SCRATCH_PASS2="YourSecureProfilePassword"</code></pre>
-            
-            <h3>Central Queue Delay Configuration</h3>
-            <p>To safely handle data modifications without letting Scratch drop incoming variables due to high traffic volume, all listening wrapper contexts defer execution tasks to a synchronized, thread-safe queue.</p>
-            <pre><code># Internal execution delay buffer to secure connection safety
-time.sleep(0.15)</code></pre>
-        </section>
-
     </div>
-
-    <script>
-        window.addEventListener("load", function() {
-            if (typeof scratchblocks !== "undefined") {
-                scratchblocks.renderMatching("pre.scratch", {
-                    style: "scratch3", 
-                    languages: ["en"]
-                });
-            } else {
-                console.error("Scratchblocks CDN could not be reached.");
-            }
-        });
-    </script>
 </body>
 </html>
