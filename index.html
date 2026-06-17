@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlockCoin Documentation</title>
+    <title>BlockCoin Documentation Matrix</title>
     <style>
         * {
             box-sizing: border-box;
@@ -11,336 +11,372 @@
             padding: 0;
         }
 
-        @keyframes pulseGlow {
-            0% { text-shadow: 0 0 10px rgba(34, 197, 94, 0.2); }
-            50% { text-shadow: 0 0 20px rgba(34, 197, 94, 0.5); }
-            100% { text-shadow: 0 0 10px rgba(34, 197, 94, 0.2); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         body {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-            background-color: #030303;
-            color: #e4e4e7;
-            line-height: 1.6;
-            padding: 80px 24px;
-            letter-spacing: -0.01em;
+            background-color: #020204;
+            color: #d4d4d8;
+            line-height: 1.5;
+            padding: 60px 20px;
+            letter-spacing: -0.015em;
             -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 850px;
+            max-width: 1000px;
             margin: 0 auto;
-            background-color: #09090b;
-            padding: 64px;
-            border-radius: 12px; 
-            border: 1px solid #18181b;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 56px;
+            border-radius: 16px; 
+            border: 1px solid #1c1c24;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.03);
         }
 
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 48px;
+        }
+
+        /* Sidebar Navigation */
+        aside {
+            position: sticky;
+            top: 60px;
+            height: fit-content;
+        }
+
+        .nav-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #52525b;
+            margin-bottom: 16px;
+        }
+
+        aside ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        aside a {
+            font-size: 13px;
+            color: #a1a1aa;
+            text-decoration: none;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            display: block;
+            padding: 6px 0;
+            border-bottom: none;
+        }
+
+        aside a:hover {
+            color: #22c55e;
+            transform: translateX(4px);
+        }
+
+        /* Content Area */
         header {
             margin-bottom: 48px;
-            position: relative;
+            border-bottom: 1px dashed #1c1c24;
+            padding-bottom: 32px;
         }
 
         h1 {
-            font-size: 42px;
+            font-size: 36px;
             font-weight: 800;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             color: #ffffff;
-            letter-spacing: -0.04em;
+            letter-spacing: -0.03em;
             text-transform: uppercase; 
-            background: linear-gradient(to right, #ffffff, #a1a1aa);
+            background: linear-gradient(135deg, #ffffff 0%, #71717a 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         h2 {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 700;
-            margin-top: 56px;
+            margin-top: 48px;
             margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #18181b;
             color: #ffffff;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
             text-transform: uppercase;
-            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 60px;
-            height: 1px;
-            background-color: #22c55e;
-            box-shadow: 0 0 8px #22c55e;
+        h2::before {
+            content: '//';
+            color: #22c55e;
         }
 
         p {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             color: #a1a1aa;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         ol, ul {
-            margin-left: 24px;
-            margin-bottom: 24px;
+            margin-left: 20px;
+            margin-bottom: 20px;
             color: #a1a1aa;
         }
 
         li {
-            margin-bottom: 12px;
-            font-size: 15px;
-            padding-left: 4px;
-            transition: color 0.2s ease;
-        }
-
-        li:hover {
-            color: #f4f4f5;
+            margin-bottom: 8px;
+            font-size: 14px;
         }
 
         a {
             color: #22c55e;
             text-decoration: none;
-            font-weight: 600;
-            border-bottom: 1px dashed rgba(34, 197, 94, 0.4);
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
         }
 
         a:hover {
             color: #4ade80;
-            border-bottom: 1px solid #4ade80;
-            text-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
         }
 
-        .callout {
-            background: linear-gradient(135deg, #052e16 0%, #022c22 100%);
-            border-left: 4px solid #22c55e;
-            color: #4ade80;
-            padding: 20px;
-            border-radius: 6px;
-            margin: 32px 0;
-            font-size: 14.5px;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
-            animation: pulseGlow 4s infinite ease-in-out;
+        /* Details Card Accordion */
+        details {
+            background: #0d0d11;
+            border: 1px solid #1c1c24;
+            border-radius: 8px;
+            margin: 24px 0;
+            overflow: hidden;
+            transition: border-color 0.2s ease;
         }
 
-        .callout strong {
+        details[open] {
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        summary {
+            padding: 16px 20px;
+            font-weight: 700;
+            font-size: 13px;
             color: #ffffff;
-            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            background: #111116;
+            user-select: none;
+            outline: none;
         }
 
+        summary:hover {
+            background: #15151c;
+            color: #22c55e;
+        }
+
+        .details-content {
+            padding: 24px;
+            border-top: 1px solid #1c1c24;
+            background: #09090c;
+        }
+
+        /* Table Design */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 24px;
-            margin-bottom: 32px;
-            font-size: 14px;
-            border: 1px solid #18181b;
-            border-radius: 6px;
+            margin: 20px 0;
+            font-size: 13.5px;
+            border: 1px solid #1c1c24;
+            border-radius: 8px;
             overflow: hidden;
         }
 
         th, td {
             text-align: left;
-            padding: 16px 20px;
-            border-bottom: 1px solid #18181b;
-            vertical-align: middle;
-            transition: background-color 0.2s ease;
+            padding: 14px 18px;
+            border-bottom: 1px solid #1c1c24;
         }
 
         th {
-            background-color: #0c0c0e;
+            background-color: #0d0d11;
             font-weight: 700;
-            color: #f4f4f5;
+            color: #a1a1aa;
             text-transform: uppercase;
-            font-size: 12px;
+            font-size: 11px;
             letter-spacing: 0.05em;
-            border-bottom: 2px solid #18181b;
         }
 
         td {
             color: #a1a1aa;
-            background-color: #050507;
+            background-color: #07070a;
         }
 
         tr:hover td {
-            background-color: #0c0c0e;
+            background-color: #0d0d11;
             color: #ffffff;
         }
 
         code {
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            background-color: #18181b;
+            font-family: ui-monospace, monospace;
+            background-color: #14141a;
             color: #e4e4e7;
-            padding: 3px 6px;
+            padding: 2px 6px;
             border-radius: 4px;
-            font-size: 13px;
-            border: 1px solid #27272a;
-            transition: all 0.2s ease;
+            font-size: 12.5px;
+            border: 1px solid #23232e;
         }
 
         tr:hover code {
-            border-color: rgba(34, 197, 94, 0.3);
-            background-color: #121214;
+            border-color: rgba(34, 197, 94, 0.2);
             color: #22c55e;
         }
 
-        em {
-            color: #a1a1aa;
-            font-style: normal; 
-            font-weight: bold;
-            color: #22c55e;
-            font-size: 13px;
-        }
-
-        @media (max-width: 640px) {
-            body { padding: 32px 16px; }
-            .container { padding: 32px 20px; border-radius: 0; }
-            h1 { font-size: 32px; }
-            h2 { font-size: 18px; }
-            th, td { padding: 12px 14px; }
+        @media (max-width: 768px) {
+            body { padding: 24px 12px; }
+            .container { padding: 32px 20px; border-radius: 12px; }
+            .layout-grid { grid-template-columns: 1fr; gap: 32px; }
+            aside { display: none; }
+            h1 { font-size: 28px; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        
-        <header id="overview">
-            <h1>BlockCoin Documentation</h1>
-            <p>Welcome to the official documentation for the BlockCoin currency system for Scratch. This system uses <code>scratchattach</code> to connect local instances and games to a centralized network cluster, providing synchronized cloud wallets and verified database exchanges safely.</p>
-        </header>
-
-        <section id="installation">
-            <h2>How to Add BlockCoin to Your Project</h2>
-            <ol>
-                <li>Visit the official BlockCoin network architecture center at <a href="https://scratch.mit.edu/projects/1331635541/" target="_blank">scratch.mit.edu/projects/1331635541/</a>.</li>
-                <li>Open your <strong>Backpack</strong> dock at the bottom of the Scratch project layout.</li>
-                <li>Drag the <strong>"Cloud Requests"</strong> asset module down into your backpack, enter your game platform, and unpack the sprite inside.</li>
-                <li><strong>Required Credit:</strong> You must explicitly credit <code>@Timmccool</code> inside your project deployment notes for providing the underlying communication engine framework.</li>
-            </ol>
-        </section>
-
-        <section id="approval">
-            <h2>How to Get Approval to Use BlockCoin</h2>
-            <p>To preserve cross-game data sync integrity, all cloud pipelines must be explicitly whitelisted by our back-end listener before handling live calls.</p>
-            <ol>
-                <li>Submit an application on the official BlockCoin communications thread.</li>
-                <li>The authorization process and database logging routing configuration typically take <strong>24 to 48 hours</strong> to complete.</li>
-            </ol>
-            <div class="callout">
-                <strong>NOTICE:</strong> The centralized engine will drop variable responses originating from unauthorized project contexts automatically.
-            </div>
-        </section>
-
-        <section id="usage">
-            <h2>How to Use BlockCoin & Asset Integration</h2>
-            <p>To run data mutations or inventory updates using the network, implement the <code>PayCoins (Amount) (Item)</code> custom block block stack.</p>
-            <p>This block triggers an internal identification query to our backend. Users will receive a generated authentication comment captcha code output inside this custom call workflow, which must be updated on the central project verification thread to execute asset clearance.</p>
+        <div class="layout-grid">
             
-            <div class="callout">
-                <strong>SHOP DEVELOPERS: OPTIMIZED TRANSACTION TIMELINE</strong><br>
-                The transaction workflow processes item distribution context entirely on the backend server. When a client checks out an item, run this simplified block sequence:
-                <ol style="margin-top: 12px; margin-bottom: 0; color: #4ade80;">
-                    <li>Call <code>transaction</code> passing <code>[Amount:Item]</code> as Argument 1, and <code>username</code> as Argument 2.</li>
-                    <li>Verify the engine returns a <code>SUCCESS</code> token back to your local client script.</li>
-                    <li>Instantly dispatch a call to <code>get_item</code> passing <code>username</code> as Argument 1. The server handles verification context automatically.</li>
-                </ol>
-            </div>
-        </section>
+            <aside>
+                <div class="nav-title">Documentation</div>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#setup">Environment Setup</a></li>
+                    <li><a href="#approval">Authorization</a></li>
+                    <li><a href="#commands">Commands API</a></li>
+                    <li><a href="#rules">Validation Rules</a></li>
+                    <li><a href="#troubleshoot">Troubleshooting</a></li>
+                </ul>
+            </aside>
 
-        <section id="scratch-commands">
-            <h2>BlockCoin Commands API</h2>
-            <p>These are the core endpoints managed by the system parser inside the <strong>Cloud Requests</strong> module wrapper:</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="width: 35%;">Command Name</th>
-                        <th>What It Does</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>get_captcha</code></td>
-                        <td>Requests an authentication puzzle token and returns it to your game project client.</td>
-                    </tr>
-                    <tr>
-                        <td><code>captcha_sent</code></td>
-                        <td>Signals the back-end worker thread to verify comment strings on the master ledger project.</td>
-                    </tr>
-                    <tr>
-                        <td><code>get_owner</code></td>
-                        <td>Looks up the registered host username of the calling project to balance credit allocations.</td>
-                    </tr>
-                    <tr>
-                        <td><code>transaction</code></td>
-                        <td>Validates balances and creates a temporary purchase receipt using the <code>Amount:Item</code> structure.</td>
-                    </tr>
-                    <tr>
-                        <td><code>get_item</code></td>
-                        <td>Finalizes the transaction workflow by claiming the user's pending asset and adding it directly to their long-term database file.</td>
-                    </tr>
-                    <tr>
-                        <td><code>get_inventory</code></td>
-                        <td>Returns a comma-separated string containing every validated item owned by the user <em>exclusively inside the calling project's environment</em>.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+            <main>
+                <header id="overview">
+                    <h1>BlockCoin Matrix</h1>
+                    <p>Official deployment manual for the BlockCoin transactional framework. Synchronize project environments, manage cloud wallets, and validate asset delivery across the network cluster using centralized server nodes.</p>
+                </header>
 
-        <section id="safety">
-            <h2>System Consistency & Purchase Rules</h2>
-            <p>BlockCoin implements architecture layers to maintain stable ledger profiles across all instances:</p>
-            <ul>
-                <li><strong>Identity Syncing:</strong> Securely binds actions to platform data signatures to prevent impersonation.</li>
-                <li><strong>State Validation:</strong> Compares pending purchase parameters against real-time node IDs to stop spoofing tricks.</li>
-                <li><strong>Purchase Limits:</strong> Database checks ensure specific items can only be bought once per user per project. Developers should parse <code>get_inventory</code> to verify ownership states before offering checkout menus.</li>
-            </ul>
-        </section>
+                <section id="setup">
+                    <h2>Environment Setup</h2>
+                    <ol>
+                        <li>Access the central architecture cluster at <a href="https://scratch.mit.edu/projects/1331635541/" target="_blank">scratch.mit.edu/projects/1331635541/</a>.</li>
+                        <li>Open your development panel <strong>Backpack</strong>.</li>
+                        <li>Import the <strong>"Cloud Requests"</strong> runtime module asset directly into your target project.</li>
+                        <li><strong>Framework Attribution:</strong> Explicit documentation credit must be extended to <code>@Timmccool</code> within your public project deployment text.</li>
+                    </ol>
+                </section>
 
-        <section id="troubleshooting">
-            <h2>Quick Troubleshooting</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="width: 40%;">Issue Encountered</th>
-                        <th>Resolution Path</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Transactions are completely stuck on loading</strong></td>
-                        <td>Verify that your project ID has been registered in our central config network file. Unapproved IDs are automatically blocked.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Verification codes are failing</strong></td>
-                        <td>Ensure the player posted the precise alphanumeric string directly as a main comment on the master profile project.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Items return <code>ERROR_NO_PENDING_TRANSACTION</code></strong></td>
-                        <td>Ensure your script does not call <code>get_item</code> unless <code>transaction</code> has completed with a <code>SUCCESS</code> response code. Check that the player does not already own the item, as duplicates are rejected.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Cloud variable connection dropped</strong></td>
-                        <td>Network drops can happen during Scratch traffic peaks. The backend queue handles variations, but users can safely click green flag triggers to restart communication handshakes.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+                <section id="approval">
+                    <h2>Authorization</h2>
+                    <p>Live pipelines require network verification parameters before accepting server requests.</p>
+                    <ul>
+                        <li>File an index request registration entry on the primary BlockCoin development forum thread.</li>
+                        <li>Config file synchronization and validation updates conclude inside a standard <strong>24 to 48 hour</strong> pipeline.</li>
+                    </ul>
+                </section>
 
-        <footer style="margin-top: 64px; padding-top: 24px; border-top: 1px solid #18181b; text-align: center; color: #52525b; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;">
-            <p>Need extra help implementing BlockCoin? Post a question on the official application forum thread or leave a message on our project profile page!</p>
-        </footer>
+                <details>
+                    <summary>🛠️ Advanced Topics Menu</summary>
+                    <div class="details-content">
+                        <p style="color: #ffffff; font-weight: 700; margin-bottom: 8px;">Optimized Transaction Timeline</p>
+                        <p>The transaction workflow processes item distribution context entirely on the backend server. When a client checks out an item, run this simplified block sequence:</p>
+                        <ol style="color: #4ade80; margin-top: 8px;">
+                            <li>Call <code>transaction</code> passing <code>[Amount:Item]</code> as Argument 1, and <code>username</code> as Argument 2.</li>
+                            <li>Verify the engine returns a <code>SUCCESS</code> token back to your local client script.</li>
+                            <li>Instantly dispatch a call to <code>get_item</code> passing <code>username</code> as Argument 1. The server handles verification context automatically.</li>
+                        </ol>
+                    </div>
+                </details>
 
+                <section id="commands">
+                    <h2>Commands API</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 35%;">Endpoint</th>
+                                <th>Operational Context</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>get_captcha</code></td>
+                                <td>Requests an identity puzzle string to pass to the active project canvas.</td>
+                            </tr>
+                            <tr>
+                                <td><code>captcha_sent</code></td>
+                                <td>Signals back-end workers to evaluate comment logs on the master project database.</td>
+                            </tr>
+                            <tr>
+                                <td><code>get_owner</code></td>
+                                <td>Returns the registered owner account name connected to the active project context.</td>
+                            </tr>
+                            <tr>
+                                <td><code>transaction</code></td>
+                                <td>Processes wallet balances and logs a pending receipt mapping to the <code>Amount:Item</code> parameters.</td>
+                            </tr>
+                            <tr>
+                                <td><code>get_item</code></td>
+                                <td>Finalizes asset allocation, records it to the user data index, and clears the active transaction block.</td>
+                            </tr>
+                            <tr>
+                                <td><code>get_inventory</code></td>
+                                <td>Fetches a comma-separated array string of verified items owned exclusively inside the calling project's system index.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="rules">
+                    <h2>Validation Rules</h2>
+                    <ul>
+                        <li><strong>Signature Verification:</strong> Binds cloud execution threads directly to account credentials to prevent spoofing.</li>
+                        <li><strong>Scope Constraints:</strong> Asset queries run directly against independent node contexts to protect item ownership boundaries.</li>
+                        <li><strong>Deduplication Guard:</strong> Database limits enforce a strict singular-ownership system per asset name unless modified by custom server logic.</li>
+                    </ul>
+                </section>
+
+                <section id="troubleshoot">
+                    <h2>Troubleshooting Matrix</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 40%;">Exception State</th>
+                                <th>Correction Vector</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Variables frozen on load</strong></td>
+                                <td>Ensure project network credentials match an explicit entry in the backend config database.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Captcha validation drops</strong></td>
+                                <td>Verify that client comment match fields are completely identical to the raw puzzle code sequence.</td>
+                            </tr>
+                            <tr>
+                                <td><strong><code>ERROR_NO_PENDING_TRANSACTION</code></strong></td>
+                                <td>Ensure <code>get_item</code> is not invoked before <code>transaction</code> registers a confirmed <code>SUCCESS</code> state.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Handshake Dropouts</strong></td>
+                                <td>平台 server load spikes can interrupt runtime channels. Reset project listeners via the green flag to clear variables.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <footer style="margin-top: 48px; padding-top: 24px; border-top: 1px solid #1c1c24; text-align: center; color: #4b5563; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;">
+                    <p>Core Matrix Hub. Inquiries may be submitted directly within open development forum spaces.</p>
+                </footer>
+            </main>
+
+        </div>
     </div>
+
 </body>
 </html>
