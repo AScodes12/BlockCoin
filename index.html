@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlockCoin Documentation Matrix</title>
+    <title>BlockCoin Documentation</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,35 +13,40 @@
 
         body {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-            background-color: #020204;
-            color: #d4d4d8;
-            line-height: 1.5;
+            background-color: #050507;
+            color: #c5c5ca;
+            line-height: 1.6;
             padding: 60px 20px;
-            letter-spacing: -0.015em;
+            letter-spacing: -0.01em;
             -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1040px;
             margin: 0 auto;
-            background: rgba(10, 10, 12, 0.8);
-            backdrop-filter: blur(12px);
-            padding: 56px;
-            border-radius: 16px; 
-            border: 1px solid #1c1c24;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+            background: #0a0a0f;
+            padding: 50px;
+            border-radius: 12px; 
+            border: 1px solid #1a1a24;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+            animation: initReveal 0.5s ease-out;
+        }
+
+        @keyframes initReveal {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .layout-grid {
             display: grid;
-            grid-template-columns: 240px 1fr;
-            gap: 48px;
+            grid-template-columns: 220px 1fr;
+            gap: 50px;
         }
 
-        /* Sidebar Navigation */
+        /* Sticky Left Sidebar Navigation */
         aside {
             position: sticky;
-            top: 60px;
+            top: 40px;
             height: fit-content;
         }
 
@@ -50,191 +55,184 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: #52525b;
-            margin-bottom: 16px;
+            color: #4b4b53;
+            margin-bottom: 14px;
         }
 
         aside ul {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 4px;
         }
 
         aside a {
-            font-size: 13px;
-            color: #a1a1aa;
+            font-size: 13.5px;
+            color: #85858a;
             text-decoration: none;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             display: block;
-            padding: 6px 0;
-            border-bottom: none;
+            padding: 6px 8px;
+            border-radius: 4px;
+            transition: all 0.15s ease;
         }
 
         aside a:hover {
             color: #22c55e;
-            transform: translateX(4px);
+            background-color: #11111a;
+            padding-left: 12px;
         }
 
-        /* Content Area */
+        /* Main Content Panel */
         header {
-            margin-bottom: 48px;
-            border-bottom: 1px dashed #1c1c24;
-            padding-bottom: 32px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #1a1a24;
+            padding-bottom: 24px;
         }
 
         h1 {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 800;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             color: #ffffff;
-            letter-spacing: -0.03em;
-            text-transform: uppercase; 
-            background: linear-gradient(135deg, #ffffff 0%, #71717a 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
         }
 
         h2 {
             font-size: 18px;
             font-weight: 700;
-            margin-top: 48px;
-            margin-bottom: 20px;
+            margin-top: 44px;
+            margin-bottom: 16px;
             color: #ffffff;
-            letter-spacing: -0.01em;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        h2::before {
-            content: '//';
-            color: #22c55e;
+            border-left: 3px solid #22c55e;
+            padding-left: 12px;
         }
 
         p {
             margin-bottom: 16px;
-            color: #a1a1aa;
-            font-size: 14px;
+            color: #9a9a9f;
+            font-size: 14.5px;
         }
 
         ol, ul {
             margin-left: 20px;
-            margin-bottom: 20px;
-            color: #a1a1aa;
+            margin-bottom: 24px;
+            color: #9a9a9f;
         }
 
         li {
-            margin-bottom: 8px;
-            font-size: 14px;
+            margin-bottom: 10px;
+            font-size: 14.5px;
         }
 
         a {
             color: #22c55e;
             text-decoration: none;
-            transition: all 0.15s ease;
+            border-bottom: 1px dashed rgba(34, 197, 94, 0.4);
+            transition: color 0.15s ease;
         }
 
         a:hover {
             color: #4ade80;
+            border-bottom-style: solid;
         }
 
-        /* Details Card Accordion */
+        /* Styled Advanced Details Accordion */
         details {
-            background: #0d0d11;
-            border: 1px solid #1c1c24;
-            border-radius: 8px;
-            margin: 24px 0;
+            background: #0d0d14;
+            border: 1px solid #1a1a24;
+            border-radius: 6px;
+            margin: 28px 0;
             overflow: hidden;
             transition: border-color 0.2s ease;
         }
 
         details[open] {
-            border-color: rgba(34, 197, 94, 0.3);
+            border-color: #22c55e;
         }
 
         summary {
-            padding: 16px 20px;
+            padding: 14px 18px;
             font-weight: 700;
             font-size: 13px;
             color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             cursor: pointer;
-            background: #111116;
+            background: #12121c;
             user-select: none;
             outline: none;
+            transition: background 0.2s ease;
         }
 
         summary:hover {
-            background: #15151c;
+            background: #171724;
             color: #22c55e;
         }
 
         .details-content {
-            padding: 24px;
-            border-top: 1px solid #1c1c24;
-            background: #09090c;
+            padding: 20px;
+            border-top: 1px solid #1a1a24;
+            background: #08080d;
         }
 
-        /* Table Design */
+        /* Tables */
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
             font-size: 13.5px;
-            border: 1px solid #1c1c24;
-            border-radius: 8px;
+            border: 1px solid #1a1a24;
+            border-radius: 6px;
             overflow: hidden;
         }
 
         th, td {
             text-align: left;
-            padding: 14px 18px;
-            border-bottom: 1px solid #1c1c24;
+            padding: 12px 16px;
+            border-bottom: 1px solid #1a1a24;
         }
 
         th {
-            background-color: #0d0d11;
+            background-color: #12121c;
             font-weight: 700;
-            color: #a1a1aa;
-            text-transform: uppercase;
+            color: #ffffff;
             font-size: 11px;
+            text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
         td {
-            color: #a1a1aa;
+            color: #9a9a9f;
             background-color: #07070a;
         }
 
         tr:hover td {
-            background-color: #0d0d11;
+            background-color: #0f0f17;
             color: #ffffff;
         }
 
         code {
             font-family: ui-monospace, monospace;
-            background-color: #14141a;
+            background-color: #14141d;
             color: #e4e4e7;
             padding: 2px 6px;
             border-radius: 4px;
             font-size: 12.5px;
-            border: 1px solid #23232e;
+            border: 1px solid #242433;
         }
 
         tr:hover code {
-            border-color: rgba(34, 197, 94, 0.2);
+            border-color: #22c55e;
             color: #22c55e;
+            background-color: #09090f;
         }
 
         @media (max-width: 768px) {
-            body { padding: 24px 12px; }
-            .container { padding: 32px 20px; border-radius: 12px; }
-            .layout-grid { grid-template-columns: 1fr; gap: 32px; }
+            body { padding: 20px 10px; }
+            .container { padding: 24px 16px; border-radius: 8px; }
+            .layout-grid { grid-template-columns: 1fr; gap: 24px; }
             aside { display: none; }
-            h1 { font-size: 28px; }
+            h1 { font-size: 26px; }
         }
     </style>
 </head>
@@ -244,48 +242,49 @@
         <div class="layout-grid">
             
             <aside>
-                <div class="nav-title">Documentation</div>
+                <div class="nav-title">Navigation</div>
                 <ul>
                     <li><a href="#overview">Overview</a></li>
-                    <li><a href="#setup">Environment Setup</a></li>
-                    <li><a href="#approval">Authorization</a></li>
-                    <li><a href="#commands">Commands API</a></li>
-                    <li><a href="#rules">Validation Rules</a></li>
+                    <li><a href="#setup">How to Add BlockCoin</a></li>
+                    <li><a href="#approval">How to Get Approval</a></li>
+                    <li><a href="#commands">BlockCoin Commands</a></li>
+                    <li><a href="#safety">Safety Features</a></li>
                     <li><a href="#troubleshoot">Troubleshooting</a></li>
                 </ul>
             </aside>
 
             <main>
                 <header id="overview">
-                    <h1>BlockCoin Matrix</h1>
-                    <p>Official deployment manual for the BlockCoin transactional framework. Synchronize project environments, manage cloud wallets, and validate asset delivery across the network cluster using centralized server nodes.</p>
+                    <h1>BlockCoin Documentation</h1>
+                    <p>Welcome to the official documentation for the BlockCoin currency system for Scratch[cite: 2]. This system uses <code>scratchattach</code> to connect shops and games to a centralized server and uses a captcha to verify transactions safely and easily[cite: 3].</p>
                 </header>
 
                 <section id="setup">
-                    <h2>Environment Setup</h2>
+                    <h2>How to Add BlockCoin to Your Project</h2>
                     <ol>
-                        <li>Access the central architecture cluster at <a href="https://scratch.mit.edu/projects/1331635541/" target="_blank">scratch.mit.edu/projects/1331635541/</a>.</li>
-                        <li>Open your development panel <strong>Backpack</strong>.</li>
-                        <li>Import the <strong>"Cloud Requests"</strong> runtime module asset directly into your target project.</li>
-                        <li><strong>Framework Attribution:</strong> Explicit documentation credit must be extended to <code>@Timmccool</code> within your public project deployment text.</li>
+                        <li>Visit the official BlockCoin project page at <a href="https://scratch.mit.edu/projects/1331635541/" target="_blank">scratch.mit.edu/projects/1331635541/</a>[cite: 5].</li>
+                        <li>Open your <strong>Backpack</strong> panel at the bottom of the Scratch editor[cite: 5].</li>
+                        <li>Backpack the <strong>"Cloud Requests"</strong> sprite and add it into your project[cite: 5].</li>
+                        <li><strong>Required Credit:</strong> You must explicitly credit <code>@Timmccool</code> in your project description or notes and credits for providing the cloud framework[cite: 6].</li>
                     </ol>
                 </section>
 
                 <section id="approval">
-                    <h2>Authorization</h2>
-                    <p>Live pipelines require network verification parameters before accepting server requests.</p>
-                    <ul>
-                        <li>File an index request registration entry on the primary BlockCoin development forum thread.</li>
-                        <li>Config file synchronization and validation updates conclude inside a standard <strong>24 to 48 hour</strong> pipeline.</li>
-                    </ul>
+                    <h2>How to Get Approval to Use BlockCoin</h2>
+                    <p>To ensure network stability, all project links must be approved before the server will run requests.</p>
+                    <ol>
+                        <li>Visit the official BlockCoin forum thread (link) and fill out the system application[cite: 8].</li>
+                        <li>Approval usually takes between <strong>24 to 48 hours</strong>[cite: 8].</li>
+                        <li>In the meantime, the centralized Python server will not process any requests coming from your project ID[cite: 9].</li>
+                    </ol>
                 </section>
 
                 <details>
-                    <summary>🛠️ Advanced Topics Menu</summary>
+                    <summary>🛠️ Advanced Topics</summary>
                     <div class="details-content">
-                        <p style="color: #ffffff; font-weight: 700; margin-bottom: 8px;">Optimized Transaction Timeline</p>
+                        <p style="color: #ffffff; font-weight: 700; margin-bottom: 6px;">Optimized Transaction Timeline</p>
                         <p>The transaction workflow processes item distribution context entirely on the backend server. When a client checks out an item, run this simplified block sequence:</p>
-                        <ol style="color: #4ade80; margin-top: 8px;">
+                        <ol style="margin-top: 10px; margin-left: 20px;">
                             <li>Call <code>transaction</code> passing <code>[Amount:Item]</code> as Argument 1, and <code>username</code> as Argument 2.</li>
                             <li>Verify the engine returns a <code>SUCCESS</code> token back to your local client script.</li>
                             <li>Instantly dispatch a call to <code>get_item</code> passing <code>username</code> as Argument 1. The server handles verification context automatically.</li>
@@ -294,84 +293,85 @@
                 </details>
 
                 <section id="commands">
-                    <h2>Commands API</h2>
+                    <h2>BlockCoin Commands</h2>
                     <table>
                         <thead>
                             <tr>
-                                <th style="width: 35%;">Endpoint</th>
-                                <th>Operational Context</th>
+                                <th style="width: 30%;">Command</th>
+                                <th>Description</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td><code>get_captcha</code></td>
-                                <td>Requests an identity puzzle string to pass to the active project canvas.</td>
+                                <td>Returns a comment verification captcha code to your project canvas[cite: 17].</td>
                             </tr>
                             <tr>
                                 <td><code>captcha_sent</code></td>
-                                <td>Signals back-end workers to evaluate comment logs on the master project database.</td>
+                                <td>Tells the Python server to check the master project comments for the user's validation code.</td>
                             </tr>
                             <tr>
                                 <td><code>get_owner</code></td>
-                                <td>Returns the registered owner account name connected to the active project context.</td>
+                                <td>Finds the registered owner of the project on the server (all transactions will be paid to the owner)[cite: 18].</td>
                             </tr>
                             <tr>
                                 <td><code>transaction</code></td>
-                                <td>Processes wallet balances and logs a pending receipt mapping to the <code>Amount:Item</code> parameters.</td>
+                                <td>Pays an amount to the project owner by verifying balances and creating a pending transaction token[cite: 19].</td>
                             </tr>
                             <tr>
                                 <td><code>get_item</code></td>
-                                <td>Finalizes asset allocation, records it to the user data index, and clears the active transaction block.</td>
+                                <td>Claims the pending transaction receipt and saves the item permanently to the user's database portfolio.</td>
                             </tr>
                             <tr>
                                 <td><code>get_inventory</code></td>
-                                <td>Fetches a comma-separated array string of verified items owned exclusively inside the calling project's system index.</td>
+                                <td>Returns a comma-separated list of all items owned by the user inside the calling project's shop.</td>
                             </tr>
                         </tbody>
                     </table>
                 </section>
 
-                <section id="rules">
-                    <h2>Validation Rules</h2>
+                <section id="safety">
+                    <h2>Safety Features</h2>
+                    <p>BlockCoin contains built-in safety features to preserve the integrity of projects on the server and the users using them[cite: 14]:</p>
                     <ul>
-                        <li><strong>Signature Verification:</strong> Binds cloud execution threads directly to account credentials to prevent spoofing.</li>
-                        <li><strong>Scope Constraints:</strong> Asset queries run directly against independent node contexts to protect item ownership boundaries.</li>
-                        <li><strong>Deduplication Guard:</strong> Database limits enforce a strict singular-ownership system per asset name unless modified by custom server logic.</li>
+                        <li><strong>Platform Verification:</strong> Uses Scratchattach's built-in verification system to confirm identity logs[cite: 15].</li>
+                        <li><strong>Spam Filters:</strong> Uses anti-bot scripts and request limits on the server side to stop malicious traffic[cite: 15].</li>
+                        <li><strong>Single Ownership Limits:</strong> The database enforces that specific items can only be bought once per user per project to keep profile inventories consistent.</li>
                     </ul>
                 </section>
 
                 <section id="troubleshoot">
-                    <h2>Troubleshooting Matrix</h2>
+                    <h2>Quick Troubleshooting</h2>
                     <table>
                         <thead>
                             <tr>
-                                <th style="width: 40%;">Exception State</th>
-                                <th>Correction Vector</th>
+                                <th style="width: 40%;">Problem</th>
+                                <th>Solution</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Variables frozen on load</strong></td>
-                                <td>Ensure project network credentials match an explicit entry in the backend config database.</td>
+                                <td><strong>Transactions are stuck loading</strong></td>
+                                <td>Make sure your project has gone through the forum application and your project ID is whitelisted on the server database.</td>
                             </tr>
                             <tr>
-                                <td><strong>Captcha validation drops</strong></td>
-                                <td>Verify that client comment match fields are completely identical to the raw puzzle code sequence.</td>
+                                <td><strong>Verification codes are failing</strong></td>
+                                <td>Remind users they must comment the exact captcha puzzle string directly on the official master project profile[cite: 12].</td>
                             </tr>
                             <tr>
                                 <td><strong><code>ERROR_NO_PENDING_TRANSACTION</code></strong></td>
-                                <td>Ensure <code>get_item</code> is not invoked before <code>transaction</code> registers a confirmed <code>SUCCESS</code> state.</td>
+                                <td>Your project is calling <code>get_item</code> without receiving a <code>SUCCESS</code> message from the <code>transaction</code> command first. Check that the user has enough money and does not already own the item.</td>
                             </tr>
                             <tr>
-                                <td><strong>Handshake Dropouts</strong></td>
-                                <td>Server load spikes can interrupt runtime channels. Reset project listeners via the green flag to clear variables.</td>
+                                <td><strong>Cloud variables disconnected</strong></td>
+                                <td>Platforms experience occasional load drops during peak traffic hours. Users can safely restart the cloud loop by clicking the green flag.</td>
                             </tr>
                         </tbody>
                     </table>
                 </section>
 
-                <footer style="margin-top: 48px; padding-top: 24px; border-top: 1px solid #1c1c24; text-align: center; color: #4b5563; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;">
-                    <p>THIS IS THE OFFICIAL DOCUMENTATION PAGE FOR BLOCKCOIN. IF YOU NEED ANY MORE HELP FEEL FREE TO REACH OUT ON THE OFFICIAL FORUM</p>
+                <footer style="margin-top: 48px; padding-top: 24px; border-top: 1px solid #1a1a24; text-align: center; color: #52525b; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;">
+                    <p>This is the official documentation page for BlockCoin. If you need any more help feel free to reach out on the official forum.</p>
                 </footer>
             </main>
 
