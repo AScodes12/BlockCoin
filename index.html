@@ -12,7 +12,6 @@
         }
 
         body {
-            /* Angular, crisp font stack using system-ui mono elements or clean sans fonts */
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
             background-color: #000000;
             color: #ffffff;
@@ -27,11 +26,10 @@
             margin: 0 auto;
             background-color: #0a0a0a;
             padding: 64px;
-            border-radius: 0px; /* Fully angular edges instead of curves */
+            border-radius: 0px; 
             border: 1px solid #1f1f1f;
         }
 
-        /* Typography & Document Styles */
         header {
             margin-bottom: 48px;
         }
@@ -42,7 +40,7 @@
             margin-bottom: 16px;
             color: #ffffff;
             letter-spacing: -0.04em;
-            text-transform: uppercase; /* Makes it feel more boxy and geometric */
+            text-transform: uppercase; 
         }
 
         h2 {
@@ -88,7 +86,6 @@
             border-bottom: 1px solid #a0a0a0;
         }
 
-        /* High-Contrast Angular Callout Box */
         .callout {
             background-color: #0e1710;
             border-left: 3px solid #22c55e;
@@ -99,7 +96,6 @@
             font-size: 14px;
         }
 
-        /* High-Contrast Sharp Grid/Table System */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -130,7 +126,6 @@
             background-color: #050505;
         }
 
-        /* Angular Inline Variable Highlights */
         code {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             background-color: #16161a;
@@ -143,7 +138,7 @@
 
         em {
             color: #71717a;
-            font-style: normal; /* Removes slants to maintain the completely angular block aesthetic */
+            font-style: normal; 
             text-transform: uppercase;
             font-size: 12px;
             letter-spacing: 0.05em;
@@ -190,13 +185,23 @@
         </section>
 
         <section id="usage">
-            <h2>How to Use BlockCoin in Your Project</h2>
+            <h2>How to Use BlockCoin & Secure Asset Creation</h2>
             <p>To execute financial exchanges or payments using BlockCoin, implement the custom script block <code>PayCoins (amount)</code>.</p>
-            <p>This block communicates with our Python backend to request a unique transaction code. The player is required to type this verification code as a comment on the official root project page (<a href="https://scratch.mit.edu/projects/1331635541/" target="_blank">scratch.mit.edu/projects/1331635541/</a>) to authorize the payment.</p>
+            <p>This block communicates with our Python backend to request a unique transaction code. The player is required to type this verification code as a comment on the official root project page to authorize the payment.</p>
+            
+            <div class="callout">
+                <strong>IMPORTANT FOR SHOP DEVELOPERS: 2-ARGUMENT CLOUD WORKFLOW</strong><br>
+                Due to strict platform limitations, requests accept a maximum of 2 arguments. When a player purchases an item, follow this exact sequence to commit the item transaction safely into python server storage:
+                <ol style="margin-top: 8px; margin-bottom: 0; color: #4ade80;">
+                    <li>Call <code>transaction</code> passing <code>[cost:item_name]</code> as Arg 1, and <code>username</code> as Arg 2.</li>
+                    <li>Upon success, dispatch a request to <code>get_project_id</code> to fetch the active runtime context string.</li>
+                    <li>Instantly dispatch a call to <code>get_item</code> passing <code>username</code> as Arg 1, and the combined <code>[project_id:item_name]</code> string as Arg 2.</li>
+                </ol>
+            </div>
         </section>
 
         <section id="scratch-commands">
-            <h2>BlockCoin Commands</h2>
+            <h2>BlockCoin Commands API</h2>
             <p>These are the underlying API endpoint triggers handled by the custom code logic inside the imported <strong>Cloud Requests</strong> sprite module:</p>
             <table>
                 <thead>
@@ -211,22 +216,39 @@
                         <td>Requests a unique comment verification captcha code and returns it to your game project client.</td>
                     </tr>
                     <tr>
+                        <td><code>captcha_sent</code></td>
+                        <td>Informs the python backend to sweep the master project for the completed captcha validation comment token.</td>
+                    </tr>
+                    <tr>
                         <td><code>get_owner</code></td>
                         <td>Finds the registered Scratch username of the project creator on the central server (all transaction currency transfers automatically deposit to this account).</td>
                     </tr>
                     <tr>
                         <td><code>transaction</code></td>
-                        <td>Deducts the verified fund values and completes payment processing to the project owner.</td>
+                        <td>Processes currency extraction. Accepts a complex string parameter parsed as <code>cost:item_name</code> to flag downstream item claims.</td>
+                    </tr>
+                    <tr>
+                        <td><code>get_project_id</code></td>
+                        <td>Returns the server-side runtime project target ID to provide security auditing contexts back to the client player.</td>
+                    </tr>
+                    <tr>
+                        <td><code>get_item</code></td>
+                        <td>Validates the active transaction token. Receives a structured <code>project_id:item_name</code> chunk to claim items securely into permanent server storage.</td>
+                    </tr>
+                    <tr>
+                        <td><code>get_inventory</code></td>
+                        <td>Returns a unified, comma-separated string containing every validated item owned by the user profile for easy list parsing.</td>
                     </tr>
                 </tbody>
             </table>
         </section>
 
         <section id="safety">
-            <h2>Safety Features</h2>
+            <h2>Safety & Platform Integrity</h2>
             <p>BlockCoin includes standard structural parameters on the network layers to ensure balanced environment behaviors across games:</p>
             <ul>
                 <li><strong>Identity Checks:</strong> Uses Scratchattach’s built-in platform validation methods to establish account identity.</li>
+                <li><strong>Anti-Replay Ledger Tracking:</strong> Clears transaction receipts immediately following a <code>get_item</code> claim sequence so assets cannot be duplicated or intercepted.</li>
                 <li><strong>Network Security:</strong> Enforces automated anti-bot scripts and request spam limits directly on the central server instance to guard against data flooding.</li>
             </ul>
         </section>
@@ -248,6 +270,10 @@
                     <tr>
                         <td><strong>Verification codes are failing</strong></td>
                         <td>Remind your players that they must submit the accurate text token as a direct comment on the official project page to clear the captcha wall.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Items are failing to save to python database</strong></td>
+                        <td>Ensure your client code executes <code>get_item</code> within 60 seconds of a transaction before the verification token securely expires in server memory.</td>
                     </tr>
                     <tr>
                         <td><strong>Cloud variable connection dropped</strong></td>
