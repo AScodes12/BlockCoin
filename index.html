@@ -186,11 +186,11 @@
 
         <section id="usage">
             <h2>How to Use BlockCoin & Asset Integration</h2>
-            <p>To execute exchanges or payments using BlockCoin, implement the custom script block <code>PayCoins (amount)</code>.</p>
-            <p>This block communicates with our backend to request a validation token. The player must provide this verification code on the official root project page to authorize the payment.</p>
+            <p>To execute exchanges or payments using BlockCoin, implement the custom script block <code>PayCoins (Amount) (Item)</code>.</p>
+            <p>This custom block automatically requests a validation token from our backend. Players can find their unique verification/transaction code output directly within this block workflow, which they must provide on the official root project page to authorize the payment.</p>
             
             <div class="callout">
-                <strong>SHOP DEVELOPERS: REQUIRED EXCHAGE TIMELINE</strong><br>
+                <strong>SHOP DEVELOPERS: REQUIRED EXCHANGE TIMELINE</strong><br>
                 Due to platform data limitations, client modules accept a maximum of 2 arguments. When a user checks out an item, run this sequence to complete the log:
                 <ol style="margin-top: 8px; margin-bottom: 0; color: #4ade80;">
                     <li>Call <code>transaction</code> passing <code>[cost:item_name]</code> as Arg 1, and <code>username</code> as Arg 2.</li>
@@ -244,11 +244,12 @@
         </section>
 
         <section id="safety">
-            <h2>System Consistency</h2>
+            <h2>System Consistency & Purchase Rules</h2>
             <p>BlockCoin includes standard architectural parameters to ensure network integrity across games:</p>
             <ul>
                 <li><strong>Identity Syncing:</strong> Automatically synchronizes with platform credentials to confirm account names.</li>
                 <li><strong>State Validation:</strong> Ensures transaction states match the specific project context before logging successful data.</li>
+                <li><strong>Purchase Limits:</strong> By default, unique ledger storage profiles ensure that specific items can only be purchased once per player database entry. Developers should use <code>get_inventory</code> to verify ownership before initiating checkout.</li>
             </ul>
         </section>
 
@@ -272,7 +273,7 @@
                     </tr>
                     <tr>
                         <td><strong>Items are failing to save to database</strong></td>
-                        <td>Ensure your client code executes <code>get_item</code> immediately following a successful transaction before the pending state expires.</td>
+                        <td>Ensure your client code executes <code>get_item</code> immediately following a successful transaction before the pending state expires. Also, verify that the player does not already own the item, as items can only be bought once.</td>
                     </tr>
                     <tr>
                         <td><strong>Cloud variable connection dropped</strong></td>
