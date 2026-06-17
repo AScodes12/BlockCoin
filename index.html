@@ -159,7 +159,7 @@
         
         <header id="overview">
             <h1>BlockCoin Documentation</h1>
-            <p>Welcome to the official documentation for the BlockCoin currency system for Scratch. This system uses Scratchattach to connect shops and games to a centralized server and then uses a captcha to verify transactions safely and easily.</p>
+            <p>Welcome to the official documentation for the BlockCoin currency system for Scratch. This system uses Scratchattach to connect shops and games to a centralized server and utilizes verification steps to manage transactions safely and easily.</p>
         </header>
 
         <section id="installation">
@@ -174,27 +174,27 @@
 
         <section id="approval">
             <h2>How to Get Approval to Use BlockCoin</h2>
-            <p>To keep the network secure, all project links must be whitelisted before processing live requests.</p>
+            <p>To keep the network operating smoothly, all project links must be whitelisted before processing live requests.</p>
             <ol>
                 <li>Visit the official BlockCoin forum thread (link) and fill out the application.</li>
                 <li>Approval timelines typically take between <strong>24 to 48 hours</strong>.</li>
             </ol>
             <div class="callout">
-                NOTICE: In the meantime, the central server will automatically ignore and fail to process any network requests originating from your unapproved project ID.
+                NOTICE: The central server will automatically reject requests originating from unapproved project IDs.
             </div>
         </section>
 
         <section id="usage">
-            <h2>How to Use BlockCoin & Secure Asset Creation</h2>
-            <p>To execute financial exchanges or payments using BlockCoin, implement the custom script block <code>PayCoins (amount)</code>.</p>
-            <p>This block communicates with our Python backend to request a unique transaction code. The player is required to type this verification code as a comment on the official root project page to authorize the payment.</p>
+            <h2>How to Use BlockCoin & Asset Integration</h2>
+            <p>To execute exchanges or payments using BlockCoin, implement the custom script block <code>PayCoins (amount)</code>.</p>
+            <p>This block communicates with our backend to request a validation token. The player must provide this verification code on the official root project page to authorize the payment.</p>
             
             <div class="callout">
-                <strong>IMPORTANT FOR SHOP DEVELOPERS: 2-ARGUMENT CLOUD WORKFLOW</strong><br>
-                Due to strict platform limitations, requests accept a maximum of 2 arguments. When a player purchases an item, follow this exact sequence to commit the item transaction safely into python server storage:
+                <strong>SHOP DEVELOPERS: REQUIRED EXCHAGE TIMELINE</strong><br>
+                Due to platform data limitations, client modules accept a maximum of 2 arguments. When a user checks out an item, run this sequence to complete the log:
                 <ol style="margin-top: 8px; margin-bottom: 0; color: #4ade80;">
                     <li>Call <code>transaction</code> passing <code>[cost:item_name]</code> as Arg 1, and <code>username</code> as Arg 2.</li>
-                    <li>Upon success, dispatch a request to <code>get_project_id</code> to fetch the active runtime context string.</li>
+                    <li>Upon success, dispatch a request to <code>get_project_id</code> to synchronize the current project state.</li>
                     <li>Instantly dispatch a call to <code>get_item</code> passing <code>username</code> as Arg 1, and the combined <code>[project_id:item_name]</code> string as Arg 2.</li>
                 </ol>
             </div>
@@ -202,7 +202,7 @@
 
         <section id="scratch-commands">
             <h2>BlockCoin Commands API</h2>
-            <p>These are the underlying API endpoint triggers handled by the custom code logic inside the imported <strong>Cloud Requests</strong> sprite module:</p>
+            <p>These are the core commands handled by the logic inside the imported <strong>Cloud Requests</strong> sprite module:</p>
             <table>
                 <thead>
                     <tr>
@@ -213,27 +213,27 @@
                 <tbody>
                     <tr>
                         <td><code>get_captcha</code></td>
-                        <td>Requests a unique comment verification captcha code and returns it to your game project client.</td>
+                        <td>Requests a verification token and returns it to your game project client.</td>
                     </tr>
                     <tr>
                         <td><code>captcha_sent</code></td>
-                        <td>Informs the python backend to sweep the master project for the completed captcha validation comment token.</td>
+                        <td>Informs the backend to check the master project for the corresponding user authentication.</td>
                     </tr>
                     <tr>
                         <td><code>get_owner</code></td>
-                        <td>Finds the registered Scratch username of the project creator on the central server (all transaction currency transfers automatically deposit to this account).</td>
+                        <td>Finds the registered Scratch username of the project creator on the central server for processing deposits.</td>
                     </tr>
                     <tr>
                         <td><code>transaction</code></td>
-                        <td>Processes currency extraction. Accepts a complex string parameter parsed as <code>cost:item_name</code> to flag downstream item claims.</td>
+                        <td>Deducts funds and queues the payment process using the formatted <code>cost:item_name</code> payload.</td>
                     </tr>
                     <tr>
                         <td><code>get_project_id</code></td>
-                        <td>Returns the server-side runtime project target ID to provide security auditing contexts back to the client player.</td>
+                        <td>Returns the current project identifier to synchronize environment states.</td>
                     </tr>
                     <tr>
                         <td><code>get_item</code></td>
-                        <td>Validates the active transaction token. Receives a structured <code>project_id:item_name</code> chunk to claim items securely into permanent server storage.</td>
+                        <td>Verifies the completed checkout. Receives <code>project_id:item_name</code> to commit items directly to the user's permanent profile.</td>
                     </tr>
                     <tr>
                         <td><code>get_inventory</code></td>
@@ -244,12 +244,11 @@
         </section>
 
         <section id="safety">
-            <h2>Safety & Platform Integrity</h2>
-            <p>BlockCoin includes standard structural parameters on the network layers to ensure balanced environment behaviors across games:</p>
+            <h2>System Consistency</h2>
+            <p>BlockCoin includes standard architectural parameters to ensure network integrity across games:</p>
             <ul>
-                <li><strong>Identity Checks:</strong> Uses Scratchattach’s built-in platform validation methods to establish account identity.</li>
-                <li><strong>Anti-Replay Ledger Tracking:</strong> Clears transaction receipts immediately following a <code>get_item</code> claim sequence so assets cannot be duplicated or intercepted.</li>
-                <li><strong>Network Security:</strong> Enforces automated anti-bot scripts and request spam limits directly on the central server instance to guard against data flooding.</li>
+                <li><strong>Identity Syncing:</strong> Automatically synchronizes with platform credentials to confirm account names.</li>
+                <li><strong>State Validation:</strong> Ensures transaction states match the specific project context before logging successful data.</li>
             </ul>
         </section>
 
@@ -269,11 +268,11 @@
                     </tr>
                     <tr>
                         <td><strong>Verification codes are failing</strong></td>
-                        <td>Remind your players that they must submit the accurate text token as a direct comment on the official project page to clear the captcha wall.</td>
+                        <td>Remind your players that they must submit the accurate token as a direct comment on the official project page to clear the validation requirements.</td>
                     </tr>
                     <tr>
-                        <td><strong>Items are failing to save to python database</strong></td>
-                        <td>Ensure your client code executes <code>get_item</code> within 60 seconds of a transaction before the verification token securely expires in server memory.</td>
+                        <td><strong>Items are failing to save to database</strong></td>
+                        <td>Ensure your client code executes <code>get_item</code> immediately following a successful transaction before the pending state expires.</td>
                     </tr>
                     <tr>
                         <td><strong>Cloud variable connection dropped</strong></td>
