@@ -136,45 +136,6 @@
             border-bottom-style: solid;
         }
 
-        /* Styled Advanced Details Accordion */
-        details {
-            background: #0d0d14;
-            border: 1px solid #1a1a24;
-            border-radius: 6px;
-            margin: 28px 0;
-            overflow: hidden;
-            transition: border-color 0.2s ease;
-        }
-
-        details[open] {
-            border-color: #22c55e;
-        }
-
-        summary {
-            padding: 14px 18px;
-            font-weight: 700;
-            font-size: 13px;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            background: #12121c;
-            user-select: none;
-            outline: none;
-            transition: background 0.2s ease;
-        }
-
-        summary:hover {
-            background: #171724;
-            color: #22c55e;
-        }
-
-        .details-content {
-            padding: 20px;
-            border-top: 1px solid #1a1a24;
-            background: #08080d;
-        }
-
         /* Tables */
         table {
             width: 100%;
@@ -256,16 +217,16 @@
             <main>
                 <header id="overview">
                     <h1>BlockCoin Documentation</h1>
-                    <p>Welcome to the official documentation for the BlockCoin currency system for Scratch[cite: 2]. This system uses <code>scratchattach</code> to connect shops and games to a centralized server and uses a captcha to verify transactions safely and easily[cite: 3].</p>
+                    <p>Welcome to the official documentation for the BlockCoin currency system for Scratch. This system uses <code>scratchattach</code> to connect shops and games to a centralized server and uses a captcha to verify transactions safely and easily.</p>
                 </header>
 
                 <section id="setup">
                     <h2>How to Add BlockCoin to Your Project</h2>
                     <ol>
-                        <li>Visit the official BlockCoin project page at <a href="https://scratch.mit.edu/projects/1331635541/" target="_blank">scratch.mit.edu/projects/1331635541/</a>[cite: 5].</li>
-                        <li>Open your <strong>Backpack</strong> panel at the bottom of the Scratch editor[cite: 5].</li>
-                        <li>Backpack the <strong>"Cloud Requests"</strong> sprite and add it into your project[cite: 5].</li>
-                        <li><strong>Required Credit:</strong> You must explicitly credit <code>@Timmccool</code> in your project description or notes and credits for providing the cloud framework[cite: 6].</li>
+                        <li>Visit the official BlockCoin project page at <a href="https://scratch.mit.edu/projects/1331635541/" target="_blank">scratch.mit.edu/projects/1331635541/</a>.</li>
+                        <li>Open your <strong>Backpack</strong> panel at the bottom of the Scratch editor.</li>
+                        <li>Backpack the <strong>"Cloud Requests"</strong> sprite and add it into your project.</li>
+                        <li><strong>Required Credit:</strong> You must explicitly credit <code>@Timmccool</code> in your project description or notes and credits for providing the cloud framework.</li>
                     </ol>
                 </section>
 
@@ -273,24 +234,11 @@
                     <h2>How to Get Approval to Use BlockCoin</h2>
                     <p>To ensure network stability, all project links must be approved before the server will run requests.</p>
                     <ol>
-                        <li>Visit the official BlockCoin forum thread (link) and fill out the system application[cite: 8].</li>
-                        <li>Approval usually takes between <strong>24 to 48 hours</strong>[cite: 8].</li>
-                        <li>In the meantime, the centralized Python server will not process any requests coming from your project ID[cite: 9].</li>
+                        <li>Visit the official BlockCoin forum thread (link) and fill out the system application.</li>
+                        <li>Approval usually takes between <strong>24 to 48 hours</strong>.</li>
+                        <li>In the meantime, the centralized Python server will not process any requests coming from your project ID.</li>
                     </ol>
                 </section>
-
-                <details>
-                    <summary>🛠️ Advanced Topics</summary>
-                    <div class="details-content">
-                        <p style="color: #ffffff; font-weight: 700; margin-bottom: 6px;">Optimized Transaction Timeline</p>
-                        <p>The transaction workflow processes item distribution context entirely on the backend server. When a client checks out an item, run this simplified block sequence:</p>
-                        <ol style="margin-top: 10px; margin-left: 20px;">
-                            <li>Call <code>transaction</code> passing <code>[Amount:Item]</code> as Argument 1, and <code>username</code> as Argument 2.</li>
-                            <li>Verify the engine returns a <code>SUCCESS</code> token back to your local client script.</li>
-                            <li>Instantly dispatch a call to <code>get_item</code> passing <code>username</code> as Argument 1. The server handles verification context automatically.</li>
-                        </ol>
-                    </div>
-                </details>
 
                 <section id="commands">
                     <h2>BlockCoin Commands</h2>
@@ -304,7 +252,7 @@
                         <tbody>
                             <tr>
                                 <td><code>get_captcha</code></td>
-                                <td>Returns a comment verification captcha code to your project canvas[cite: 17].</td>
+                                <td>Returns a comment verification captcha code to your project canvas.</td>
                             </tr>
                             <tr>
                                 <td><code>captcha_sent</code></td>
@@ -312,11 +260,11 @@
                             </tr>
                             <tr>
                                 <td><code>get_owner</code></td>
-                                <td>Finds the registered owner of the project on the server (all transactions will be paid to the owner)[cite: 18].</td>
+                                <td>Finds the registered owner of the project on the server (all transactions will be paid to the owner).</td>
                             </tr>
                             <tr>
                                 <td><code>transaction</code></td>
-                                <td>Pays an amount to the project owner by verifying balances and creating a pending transaction token[cite: 19].</td>
+                                <td>Pays an amount to the project owner by verifying balances and creating a pending transaction token.</td>
                             </tr>
                             <tr>
                                 <td><code>get_item</code></td>
@@ -332,10 +280,10 @@
 
                 <section id="safety">
                     <h2>Safety Features</h2>
-                    <p>BlockCoin contains built-in safety features to preserve the integrity of projects on the server and the users using them[cite: 14]:</p>
+                    <p>BlockCoin contains built-in safety features to preserve the integrity of projects on the server and the users using them:</p>
                     <ul>
-                        <li><strong>Platform Verification:</strong> Uses Scratchattach's built-in verification system to confirm identity logs[cite: 15].</li>
-                        <li><strong>Spam Filters:</strong> Uses anti-bot scripts and request limits on the server side to stop malicious traffic[cite: 15].</li>
+                        <li><strong>Platform Verification:</strong> Uses Scratchattach's built-in verification system to confirm identity logs.</li>
+                        <li><strong>Spam Filters:</strong> Uses anti-bot scripts and request limits on the server side to stop malicious traffic.</li>
                         <li><strong>Single Ownership Limits:</strong> The database enforces that specific items can only be bought once per user per project to keep profile inventories consistent.</li>
                     </ul>
                 </section>
@@ -356,7 +304,7 @@
                             </tr>
                             <tr>
                                 <td><strong>Verification codes are failing</strong></td>
-                                <td>Remind users they must comment the exact captcha puzzle string directly on the official master project profile[cite: 12].</td>
+                                <td>Remind users they must comment the exact captcha puzzle string directly on the official master project profile.</td>
                             </tr>
                             <tr>
                                 <td><strong><code>ERROR_NO_PENDING_TRANSACTION</code></strong></td>
