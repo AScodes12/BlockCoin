@@ -11,10 +11,21 @@
             padding: 0;
         }
 
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 10px rgba(34, 197, 94, 0.2); }
+            50% { text-shadow: 0 0 20px rgba(34, 197, 94, 0.5); }
+            100% { text-shadow: 0 0 10px rgba(34, 197, 94, 0.2); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         body {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-            background-color: #000000;
-            color: #ffffff;
+            background-color: #030303;
+            color: #e4e4e7;
             line-height: 1.6;
             padding: 80px 24px;
             letter-spacing: -0.01em;
@@ -22,132 +33,179 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
-            background-color: #0a0a0a;
+            background-color: #09090b;
             padding: 64px;
-            border-radius: 0px; 
-            border: 1px solid #1f1f1f;
+            border-radius: 12px; 
+            border: 1px solid #18181b;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         header {
             margin-bottom: 48px;
+            position: relative;
         }
 
         h1 {
-            font-size: 38px;
+            font-size: 42px;
             font-weight: 800;
             margin-bottom: 16px;
             color: #ffffff;
             letter-spacing: -0.04em;
             text-transform: uppercase; 
+            background: linear-gradient(to right, #ffffff, #a1a1aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         h2 {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
             margin-top: 56px;
             margin-bottom: 20px;
             padding-bottom: 12px;
-            border-bottom: 1px solid #1f1f1f;
+            border-bottom: 1px solid #18181b;
             color: #ffffff;
             letter-spacing: -0.02em;
             text-transform: uppercase;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 60px;
+            height: 1px;
+            background-color: #22c55e;
+            box-shadow: 0 0 8px #22c55e;
         }
 
         p {
             margin-bottom: 20px;
-            color: #a0a0a0;
+            color: #a1a1aa;
             font-size: 15px;
         }
 
         ol, ul {
             margin-left: 24px;
             margin-bottom: 24px;
-            color: #a0a0a0;
+            color: #a1a1aa;
         }
 
         li {
             margin-bottom: 12px;
             font-size: 15px;
             padding-left: 4px;
+            transition: color 0.2s ease;
+        }
+
+        li:hover {
+            color: #f4f4f5;
         }
 
         a {
-            color: #ffffff;
+            color: #22c55e;
             text-decoration: none;
             font-weight: 600;
-            border-bottom: 1px dashed #ffffff;
-            transition: color 0.15s ease, border-color 0.15s ease;
+            border-bottom: 1px dashed rgba(34, 197, 94, 0.4);
+            transition: all 0.2s ease;
         }
 
         a:hover {
-            color: #a0a0a0;
-            border-bottom: 1px solid #a0a0a0;
+            color: #4ade80;
+            border-bottom: 1px solid #4ade80;
+            text-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
         }
 
         .callout {
-            background-color: #0e1710;
-            border-left: 3px solid #22c55e;
+            background: linear-gradient(135deg, #052e16 0%, #022c22 100%);
+            border-left: 4px solid #22c55e;
             color: #4ade80;
-            padding: 16px 20px;
-            border-radius: 0px;
-            margin: 24px 0;
-            font-size: 14px;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 32px 0;
+            font-size: 14.5px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+            animation: pulseGlow 4s infinite ease-in-out;
+        }
+
+        .callout strong {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 16px;
+            margin-top: 24px;
             margin-bottom: 32px;
             font-size: 14px;
-            border: 1px solid #1f1f1f;
+            border: 1px solid #18181b;
+            border-radius: 6px;
+            overflow: hidden;
         }
 
         th, td {
             text-align: left;
-            padding: 14px 18px;
-            border-bottom: 1px solid #1f1f1f;
+            padding: 16px 20px;
+            border-bottom: 1px solid #18181b;
             vertical-align: middle;
+            transition: background-color 0.2s ease;
         }
 
         th {
-            background-color: #121212;
+            background-color: #0c0c0e;
             font-weight: 700;
-            color: #ffffff;
+            color: #f4f4f5;
             text-transform: uppercase;
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: 0.05em;
+            border-bottom: 2px solid #18181b;
         }
 
         td {
-            color: #a0a0a0;
-            background-color: #050505;
+            color: #a1a1aa;
+            background-color: #050507;
+        }
+
+        tr:hover td {
+            background-color: #0c0c0e;
+            color: #ffffff;
         }
 
         code {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            background-color: #16161a;
-            color: #ffffff;
+            background-color: #18181b;
+            color: #e4e4e7;
             padding: 3px 6px;
-            border-radius: 0px;
+            border-radius: 4px;
             font-size: 13px;
-            border: 1px solid #2a2a30;
+            border: 1px solid #27272a;
+            transition: all 0.2s ease;
+        }
+
+        tr:hover code {
+            border-color: rgba(34, 197, 94, 0.3);
+            background-color: #121214;
+            color: #22c55e;
         }
 
         em {
-            color: #71717a;
+            color: #a1a1aa;
             font-style: normal; 
-            text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 0.05em;
+            font-weight: bold;
+            color: #22c55e;
+            font-size: 13px;
         }
 
         @media (max-width: 640px) {
             body { padding: 32px 16px; }
-            .container { padding: 32px 24px; }
-            h1 { font-size: 28px; }
+            .container { padding: 32px 20px; border-radius: 0; }
+            h1 { font-size: 32px; }
             h2 { font-size: 18px; }
             th, td { padding: 12px 14px; }
         }
@@ -159,50 +217,50 @@
         
         <header id="overview">
             <h1>BlockCoin Documentation</h1>
-            <p>Welcome to the official documentation for the BlockCoin currency system for Scratch. This system uses Scratchattach to connect shops and games to a centralized server and utilizes verification steps to manage transactions safely and easily.</p>
+            <p>Welcome to the official documentation for the BlockCoin currency system for Scratch. This system uses <code>scratchattach</code> to connect local instances and games to a centralized network cluster, providing synchronized cloud wallets and verified database exchanges safely.</p>
         </header>
 
         <section id="installation">
             <h2>How to Add BlockCoin to Your Project</h2>
             <ol>
-                <li>Visit the official BlockCoin project at <a href="https://scratch.mit.edu/projects/1331635541/" target="_blank">scratch.mit.edu/projects/1331635541/</a>.</li>
-                <li>Open your <strong>Backpack</strong> panel at the bottom of the Scratch editor.</li>
-                <li>Drag the <strong>"Cloud Requests"</strong> sprite down into your backpack, open your target project, and drop the sprite inside.</li>
-                <li><strong>Required Credit:</strong> You must explicitly credit <code>@Timmccool</code> in your project description or notes and credits section for providing the underlying cloud framework.</li>
+                <li>Visit the official BlockCoin network architecture center at <a href="https://scratch.mit.edu/projects/1331635541/" target="_blank">scratch.mit.edu/projects/1331635541/</a>.</li>
+                <li>Open your <strong>Backpack</strong> dock at the bottom of the Scratch project layout.</li>
+                <li>Drag the <strong>"Cloud Requests"</strong> asset module down into your backpack, enter your game platform, and unpack the sprite inside.</li>
+                <li><strong>Required Credit:</strong> You must explicitly credit <code>@Timmccool</code> inside your project deployment notes for providing the underlying communication engine framework.</li>
             </ol>
         </section>
 
         <section id="approval">
             <h2>How to Get Approval to Use BlockCoin</h2>
-            <p>To keep the network operating smoothly, all project links must be whitelisted before processing live requests.</p>
+            <p>To preserve cross-game data sync integrity, all cloud pipelines must be explicitly whitelisted by our back-end listener before handling live calls.</p>
             <ol>
-                <li>Visit the official BlockCoin forum thread (link) and fill out the application.</li>
-                <li>Approval timelines typically take between <strong>24 to 48 hours</strong>.</li>
+                <li>Submit an application on the official BlockCoin communications thread.</li>
+                <li>The authorization process and database logging routing configuration typically take <strong>24 to 48 hours</strong> to complete.</li>
             </ol>
             <div class="callout">
-                NOTICE: The central server will automatically reject requests originating from unapproved project IDs.
+                <strong>NOTICE:</strong> The centralized engine will drop variable responses originating from unauthorized project contexts automatically.
             </div>
         </section>
 
         <section id="usage">
             <h2>How to Use BlockCoin & Asset Integration</h2>
-            <p>To execute exchanges or payments using BlockCoin, implement the custom script block <code>PayCoins (Amount) (Item)</code>.</p>
-            <p>This custom block automatically requests a validation token from our backend. Players can find their unique verification/transaction code output directly within this block workflow, which they must provide on the official root project page to authorize the payment.</p>
+            <p>To run data mutations or inventory updates using the network, implement the <code>PayCoins (Amount) (Item)</code> custom block block stack.</p>
+            <p>This block triggers an internal identification query to our backend. Users will receive a generated authentication comment captcha code output inside this custom call workflow, which must be updated on the central project verification thread to execute asset clearance.</p>
             
             <div class="callout">
-                <strong>SHOP DEVELOPERS: REQUIRED EXCHANGE TIMELINE</strong><br>
-                Due to platform data limitations, client modules accept a maximum of 2 arguments. When a user checks out an item, run this sequence to complete the log:
-                <ol style="margin-top: 8px; margin-bottom: 0; color: #4ade80;">
-                    <li>Call <code>transaction</code> passing <code>[cost:item_name]</code> as Arg 1, and <code>username</code> as Arg 2.</li>
-                    <li>Upon success, dispatch a request to <code>get_project_id</code> to synchronize the current project state.</li>
-                    <li>Instantly dispatch a call to <code>get_item</code> passing <code>username</code> as Arg 1, and the combined <code>[project_id:item_name]</code> string as Arg 2.</li>
+                <strong>SHOP DEVELOPERS: OPTIMIZED TRANSACTION TIMELINE</strong><br>
+                The transaction workflow processes item distribution context entirely on the backend server. When a client checks out an item, run this simplified block sequence:
+                <ol style="margin-top: 12px; margin-bottom: 0; color: #4ade80;">
+                    <li>Call <code>transaction</code> passing <code>[Amount:Item]</code> as Argument 1, and <code>username</code> as Argument 2.</li>
+                    <li>Verify the engine returns a <code>SUCCESS</code> token back to your local client script.</li>
+                    <li>Instantly dispatch a call to <code>get_item</code> passing <code>username</code> as Argument 1. The server handles verification context automatically.</li>
                 </ol>
             </div>
         </section>
 
         <section id="scratch-commands">
             <h2>BlockCoin Commands API</h2>
-            <p>These are the core commands handled by the logic inside the imported <strong>Cloud Requests</strong> sprite module:</p>
+            <p>These are the core endpoints managed by the system parser inside the <strong>Cloud Requests</strong> module wrapper:</p>
             <table>
                 <thead>
                     <tr>
@@ -213,31 +271,27 @@
                 <tbody>
                     <tr>
                         <td><code>get_captcha</code></td>
-                        <td>Requests a verification token and returns it to your game project client.</td>
+                        <td>Requests an authentication puzzle token and returns it to your game project client.</td>
                     </tr>
                     <tr>
                         <td><code>captcha_sent</code></td>
-                        <td>Informs the backend to check the master project for the corresponding user authentication.</td>
+                        <td>Signals the back-end worker thread to verify comment strings on the master ledger project.</td>
                     </tr>
                     <tr>
                         <td><code>get_owner</code></td>
-                        <td>Finds the registered Scratch username of the project creator on the central server for processing deposits.</td>
+                        <td>Looks up the registered host username of the calling project to balance credit allocations.</td>
                     </tr>
                     <tr>
                         <td><code>transaction</code></td>
-                        <td>Deducts funds and queues the payment process using the formatted <code>cost:item_name</code> payload.</td>
-                    </tr>
-                    <tr>
-                        <td><code>get_project_id</code></td>
-                        <td>Returns the current project identifier to synchronize environment states.</td>
+                        <td>Validates balances and creates a temporary purchase receipt using the <code>Amount:Item</code> structure.</td>
                     </tr>
                     <tr>
                         <td><code>get_item</code></td>
-                        <td>Verifies the completed checkout. Receives <code>project_id:item_name</code> to commit items directly to the user's permanent profile.</td>
+                        <td>Finalizes the transaction workflow by claiming the user's pending asset and adding it directly to their long-term database file.</td>
                     </tr>
                     <tr>
                         <td><code>get_inventory</code></td>
-                        <td>Returns a unified, comma-separated string containing every validated item owned by the user profile for easy list parsing.</td>
+                        <td>Returns a comma-separated string containing every validated item owned by the user <em>exclusively inside the calling project's environment</em>.</td>
                     </tr>
                 </tbody>
             </table>
@@ -245,11 +299,11 @@
 
         <section id="safety">
             <h2>System Consistency & Purchase Rules</h2>
-            <p>BlockCoin includes standard architectural parameters to ensure network integrity across games:</p>
+            <p>BlockCoin implements architecture layers to maintain stable ledger profiles across all instances:</p>
             <ul>
-                <li><strong>Identity Syncing:</strong> Automatically synchronizes with platform credentials to confirm account names.</li>
-                <li><strong>State Validation:</strong> Ensures transaction states match the specific project context before logging successful data.</li>
-                <li><strong>Purchase Limits:</strong> By default, unique ledger storage profiles ensure that specific items can only be purchased once per player database entry. Developers should use <code>get_inventory</code> to verify ownership before initiating checkout.</li>
+                <li><strong>Identity Syncing:</strong> Securely binds actions to platform data signatures to prevent impersonation.</li>
+                <li><strong>State Validation:</strong> Compares pending purchase parameters against real-time node IDs to stop spoofing tricks.</li>
+                <li><strong>Purchase Limits:</strong> Database checks ensure specific items can only be bought once per user per project. Developers should parse <code>get_inventory</code> to verify ownership states before offering checkout menus.</li>
             </ul>
         </section>
 
@@ -265,25 +319,25 @@
                 <tbody>
                     <tr>
                         <td><strong>Transactions are completely stuck on loading</strong></td>
-                        <td>Ensure that your project has gone through the forum application process and has been verified by an administrator. Unverified projects cannot connect.</td>
+                        <td>Verify that your project ID has been registered in our central config network file. Unapproved IDs are automatically blocked.</td>
                     </tr>
                     <tr>
                         <td><strong>Verification codes are failing</strong></td>
-                        <td>Remind your players that they must submit the accurate token as a direct comment on the official project page to clear the validation requirements.</td>
+                        <td>Ensure the player posted the precise alphanumeric string directly as a main comment on the master profile project.</td>
                     </tr>
                     <tr>
-                        <td><strong>Items are failing to save to database</strong></td>
-                        <td>Ensure your client code executes <code>get_item</code> immediately following a successful transaction before the pending state expires. Also, verify that the player does not already own the item, as items can only be bought once.</td>
+                        <td><strong>Items return <code>ERROR_NO_PENDING_TRANSACTION</code></strong></td>
+                        <td>Ensure your script does not call <code>get_item</code> unless <code>transaction</code> has completed with a <code>SUCCESS</code> response code. Check that the player does not already own the item, as duplicates are rejected.</td>
                     </tr>
                     <tr>
                         <td><strong>Cloud variable connection dropped</strong></td>
-                        <td>Scratch cloud limits can occasionally skip variables during peak times. The backend queue handles this, but players can safely restart the game script if an input fails to register.</td>
+                        <td>Network drops can happen during Scratch traffic peaks. The backend queue handles variations, but users can safely click green flag triggers to restart communication handshakes.</td>
                     </tr>
                 </tbody>
             </table>
         </section>
 
-        <footer style="margin-top: 64px; padding-top: 24px; border-top: 1px solid #1f1f1f; text-align: center; color: #52525b; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;">
+        <footer style="margin-top: 64px; padding-top: 24px; border-top: 1px solid #18181b; text-align: center; color: #52525b; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;">
             <p>Need extra help implementing BlockCoin? Post a question on the official application forum thread or leave a message on our project profile page!</p>
         </footer>
 
